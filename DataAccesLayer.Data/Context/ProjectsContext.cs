@@ -8,13 +8,13 @@ namespace DataAccesLayer.Data
     {
         public string connectionstring = "Server=localhost\\SQLEXPRESS;Database=Projects;Trusted_Connection=True;";
 
-        public List<ProjectsDTO> GetAllProjects()
+        public IEnumerable<ProjectsDTO> GetAllProjects()
         {
             var ProjectsList = new List<ProjectsDTO>();
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 string sqlQuery =
-                    "SELECT * FROM ProjectsTable";
+                    "SELECT * FROM Projects";
 
                 SqlCommand cmd = new SqlCommand(sqlQuery, conn);
                 conn.Open();
@@ -31,7 +31,7 @@ namespace DataAccesLayer.Data
             return (ProjectsList);
         }
 
-        public ProjectsDTO GetProjectById(int id)
+        public ProjectsDTO GetProject(int id)
         {
             using (var conn = new SqlConnection(connectionstring))
             {

@@ -6,12 +6,11 @@ using LogicLayer.DAO;
 
 namespace LogicLayer.Container
 {
-    class ProjectContainer
+    public class ProjectContainer
     {
         private ProjectsContext context = new ProjectsContext();
 
-
-        public List<ProjectDAO> GetAllProjects(int id)
+        public List<ProjectDAO> GetAllProjects()
         {
             ProjectsRepository repo = new ProjectsRepository(context);
             List <ProjectDAO> projects = new List<ProjectDAO>();
@@ -22,7 +21,6 @@ namespace LogicLayer.Container
             {
                 projects.Add(new ProjectDAO(dto) );
             }
-
             return projects;
         }
 
@@ -32,7 +30,6 @@ namespace LogicLayer.Container
             var project = repo.GetProject(id);
             ProjectDAO projectDAO = new ProjectDAO(project);
             return projectDAO;
-
         }
     }
 }

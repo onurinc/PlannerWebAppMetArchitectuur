@@ -26,9 +26,7 @@ namespace DataAccesLayer.Data
 
         public ProjectsDTO GetProject(int id)
         {
-            return context.GetProjectById(id);
+            return context.GetProject(id);
         }
-
-
     }
 }

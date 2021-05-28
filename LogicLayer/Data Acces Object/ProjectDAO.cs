@@ -10,12 +10,10 @@ namespace LogicLayer.DAO
         public int Id { get; set; }
         public string Name { get; set; }
 
-
-        public ProjectDAO(ProjectsDTO registerDTO)
+        public ProjectDAO(ProjectsDTO projectDTO)
         {
-            Id = registerDTO.Id;
-            Name = registerDTO.ProjectName;
-
+            Id = projectDTO.Id;
+            Name = projectDTO.ProjectName;
         }
     }
 }

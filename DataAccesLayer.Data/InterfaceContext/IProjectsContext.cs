@@ -6,13 +6,9 @@ namespace DataAccesLayer.Data
 {
     public interface IProjectsContext
     {
+        IEnumerable<ProjectsDTO> GetAllProjects();
 
-
-        List<ProjectsDTO> GetAllProjects();
-
-        ProjectsDTO GetProjectById(int id);
-
-
+        ProjectsDTO GetProject(int id);
 
     }
 }

@@ -22,7 +22,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Models
         {
             ProjectName = projectDAO.Name;
             Id = projectDAO.Id;
-
         }
     }
 }
