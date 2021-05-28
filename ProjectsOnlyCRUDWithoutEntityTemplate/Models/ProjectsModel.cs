@@ -10,18 +10,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Models
 {
     public class ProjectsModel
     {
-        public ProjectsModel(ProjectDAO projectDAO)
-        {
-            ProjectName = projectDAO.Name;
-            Id = projectDAO.Id;
-
-        }
-
-        public ProjectsModel()
-        {
-
-        }
-
         [Key]
         [Display(Name = "Id")]
         [Required(ErrorMessage = "Please enter an Id")]
@@ -29,5 +17,12 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Models
         [Display(Name = "Name of the project")]
         [Required(ErrorMessage = "Please enter the name of the project")]
         public string ProjectName { get; set; }
+
+        public ProjectsModel(ProjectDAO projectDAO)
+        {
+            ProjectName = projectDAO.Name;
+            Id = projectDAO.Id;
+
+        }
     }
 }
