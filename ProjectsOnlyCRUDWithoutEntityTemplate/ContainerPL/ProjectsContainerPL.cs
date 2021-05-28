@@ -11,13 +11,13 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.ContainerPL
     {
         ProjectContainer pContainer = new ProjectContainer();
 
-        public List<ProjectsModel> GetAllProjects()
+        public List<ProjectViewModel> GetAllProjects()
         {
-            List<ProjectsModel> projects = new List<ProjectsModel>();
+            List<ProjectViewModel> projects = new List<ProjectViewModel>();
             var project = pContainer.GetAllProjects();
             foreach (var p in project)
             {
-                projects.Add(new ProjectsModel(p));
+                projects.Add(new ProjectViewModel(p));
             }
             return projects;
         }

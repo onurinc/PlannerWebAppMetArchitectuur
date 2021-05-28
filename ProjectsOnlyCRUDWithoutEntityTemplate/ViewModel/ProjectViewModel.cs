@@ -8,7 +8,7 @@ using LogicLayer.DAO;
 
 namespace ProjectsOnlyCRUDWithoutEntityTemplate.Models
 {
-    public class ProjectsModel
+    public class ProjectViewModel
     {
         [Key]
         [Display(Name = "Id")]
@@ -18,12 +18,12 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Models
         [Required(ErrorMessage = "Please enter the name of the project")]
         public string ProjectName { get; set; }
 
-        public ProjectsModel()
+        public ProjectViewModel()
         {
 
         }
 
-        public ProjectsModel(ProjectDAO projectDAO)
+        public ProjectViewModel(ProjectModel projectDAO)
         {
             ProjectName = projectDAO.Name;
             Id = projectDAO.Id;

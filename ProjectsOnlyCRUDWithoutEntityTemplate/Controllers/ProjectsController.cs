@@ -27,7 +27,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         public ActionResult Index()
         {
             ProjectsContainerPL pContainer = new ProjectsContainerPL();
-            List<ProjectsModel> projects = new List<ProjectsModel>();
+            List<ProjectViewModel> projects = new List<ProjectViewModel>();
             projects = pContainer.GetAllProjects();
 
             return View(projects);
@@ -43,7 +43,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
        [HttpGet]
         public ActionResult Create()
         {
-            ProjectsModel projectsModel = new ProjectsModel();
+            ProjectViewModel projectsModel = new ProjectViewModel();
             return View(projectsModel);
         }
 

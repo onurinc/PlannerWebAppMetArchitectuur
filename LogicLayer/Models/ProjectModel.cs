@@ -5,12 +5,12 @@ using DataAccesLayer.Data;
 
 namespace LogicLayer.DAO
 {
-    public class ProjectDAO
+    public class ProjectModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public ProjectDAO(ProjectsDTO projectDTO)
+        public ProjectModel(ProjectsDTO projectDTO)
         {
             Id = projectDTO.Id;
             Name = projectDTO.ProjectName;

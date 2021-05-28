@@ -10,25 +10,25 @@ namespace LogicLayer.Container
     {
         private ProjectsContext context = new ProjectsContext();
 
-        public List<ProjectDAO> GetAllProjects()
+        public List<ProjectModel> GetAllProjects()
         {
             ProjectsRepository repo = new ProjectsRepository(context);
-            List <ProjectDAO> projects = new List<ProjectDAO>();
+            List <ProjectModel> projects = new List<ProjectModel>();
 
             var projectdto = repo.GetAllProjects();
 
             foreach (var dto in projectdto)
             {
-                projects.Add(new ProjectDAO(dto) );
+                projects.Add(new ProjectModel(dto) );
             }
             return projects;
         }
 
-        public ProjectDAO GetProjectById(int id)
+        public ProjectModel GetProjectById(int id)
         {
             ProjectsRepository repo = new ProjectsRepository(context);
             var project = repo.GetProject(id);
-            ProjectDAO projectDAO = new ProjectDAO(project);
+            ProjectModel projectDAO = new ProjectModel(project);
             return projectDAO;
         }
 
