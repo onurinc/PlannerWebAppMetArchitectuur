@@ -50,7 +50,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=projects}/{action=Index}/{id?}");
             });
         }
     }

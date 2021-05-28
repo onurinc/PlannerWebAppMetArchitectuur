@@ -31,5 +31,11 @@ namespace LogicLayer.Container
             ProjectDAO projectDAO = new ProjectDAO(project);
             return projectDAO;
         }
+
+        //public void AddProject(ProjectDAO project)
+        //{
+        //    ProjectsRepository.AddProject(project);
+        //}
+
     }
 }

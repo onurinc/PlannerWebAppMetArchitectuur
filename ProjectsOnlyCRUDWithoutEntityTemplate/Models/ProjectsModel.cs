@@ -18,6 +18,11 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Models
         [Required(ErrorMessage = "Please enter the name of the project")]
         public string ProjectName { get; set; }
 
+        public ProjectsModel()
+        {
+
+        }
+
         public ProjectsModel(ProjectDAO projectDAO)
         {
             ProjectName = projectDAO.Name;

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccesLayer.Data;
+using LogicLayer.Container;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -38,34 +39,26 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
             return View();
         }
 
-        // GET: ProjectsController/Create
-        //[HttpGet]
-        //public ActionResult Create()
-        //{
-        //    ProjectsModel projectsModel = new ProjectsModel();
-        //    return View(projectsModel);
-        //}
+        //GET: ProjectsController/Create
+       [HttpGet]
+        public ActionResult Create()
+        {
+            ProjectsModel projectsModel = new ProjectsModel();
+            return View(projectsModel);
+        }
 
-        //// POST: ProjectsController/Create
+        // POST: ProjectsController/Create
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public ActionResult Create(ProjectsModel projectsModel)
         //{
+        //    ProjectsContainerPL pContainer = new ProjectsContainerPL();
         //    if (ModelState.IsValid)
         //    {
-        //        using (SqlConnection sqlConnection =
-        //            new SqlConnection(_configuration.GetConnectionString("Dbaseconnection")))
-        //        {
-        //            string sqlQuery = "INSERT INTO Projects VALUES(@ProjectName)";
-        //            sqlConnection.Open();
-        //            SqlCommand sqlCmd = new SqlCommand(sqlQuery, sqlConnection);
-
-        //            sqlCmd.Parameters.AddWithValue("@ProjectName", projectsModel.ProjectName);
-        //            sqlCmd.ExecuteNonQuery();
-        //        }
-        //        return RedirectToAction(nameof(Index));
+        //        pContainer.AddProject();
         //    }
-        //    return View(projectsModel);
+        //    return RedirectToAction(nameof(Index));
+
         //}
 
         //// GET: ProjectsController/Edit/5
@@ -147,6 +140,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         //        return View();
         //    }
         //}
-        
+
     }
 }
