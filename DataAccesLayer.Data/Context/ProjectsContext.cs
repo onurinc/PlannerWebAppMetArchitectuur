@@ -57,7 +57,7 @@ namespace DataAccesLayer.Data
 
         public void AddProject(ProjectsDTO project)
         {
-            string sqlQuery = "INSERT INTO ProjectsTable VALUES(@Name)";
+            string sqlQuery = "INSERT INTO Projects VALUES(@Name)";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
@@ -69,7 +69,7 @@ namespace DataAccesLayer.Data
 
         public void EditProject(ProjectsDTO project)
         {
-            string sqlQuery = "UPDATE Projects SET ProjectName = @ProjectName WHERE Id = @Id";
+            string sqlQuery = "UPDATE Projects SET ProjectName = @Name WHERE Id = @Id";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();

@@ -28,8 +28,26 @@ namespace LogicLayer.Container
         {
             ProjectsRepository repo = new ProjectsRepository(context);
             var project = repo.GetProject(id);
-            ProjectModel projectDAO = new ProjectModel(project);
-            return projectDAO;
+            ProjectModel projectModel = new ProjectModel(project);
+            return projectModel;
+        }
+
+        public void AddProject(string projectName)
+        {
+            ProjectsRepository repo = new ProjectsRepository(context);
+            repo.AddProject(new ProjectsDTO() { ProjectName = projectName});
+        }
+
+        public void EditProject(int id, string projectName)
+        {
+            ProjectsRepository repo = new ProjectsRepository(context);
+            repo.EditProject(new ProjectsDTO() { Id = id, ProjectName = projectName });
+        }
+
+        public void DeleteProject(int id)
+        {
+            ProjectsRepository repo = new ProjectsRepository(context);
+            repo.DeleteProject(id);
         }
 
         //public void AddProject(ProjectDAO project)

@@ -36,110 +36,72 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: ProjectsController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ProjectContainer pContainer = new ProjectContainer();
+            pContainer.GetProjectById(id);
+            var project = pContainer.GetProjectById(id);
+            return View(new ProjectViewModel(project));
         }
 
         //GET: ProjectsController/Create
        [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(ProjectViewModel projectModel)
         {
-            ProjectViewModel projectsModel = new ProjectViewModel();
-            return View(projectsModel);
+
+            return View(projectModel);
         }
 
         // POST: ProjectsController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(ProjectsModel projectsModel)
-        //{
-        //    ProjectsContainerPL pContainer = new ProjectsContainerPL();
-        //    if (ModelState.IsValid)
-        //    {
-        //        pContainer.AddProject();
-        //    }
-        //    return RedirectToAction(nameof(Index));
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(string ProjectName)
+        {
+            ProjectContainer pContainer = new ProjectContainer();
+            pContainer.AddProject(ProjectName);
+            return RedirectToAction(nameof(Index));
 
-        //}
+        }
 
-        //// GET: ProjectsController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    ProjectsModel projectsModel = new ProjectsModel();
-        //    DataTable dtblProjects = new DataTable();
+        // GET: ProjectsController/Edit/5
+        public ActionResult Edit(int id, ProjectViewModel projectViewModel)
+        {
 
-        //    using (SqlConnection sqlConnection =
-        //        new SqlConnection(_configuration.GetConnectionString("Dbaseconnection")))
-        //    {
-        //        string sqlQuery = "SELECT * FROM Projects WHERE Id = @id";
-        //        sqlConnection.Open();
-        //        SqlDataAdapter sqlDa = new SqlDataAdapter(sqlQuery, sqlConnection);
-        //        sqlDa.SelectCommand.Parameters.AddWithValue("@Id", id);
-        //        sqlDa.Fill(dtblProjects);
-        //    }
+            ProjectContainer pContainer = new ProjectContainer();
+            pContainer.GetProjectById(id);
 
-        //    if (dtblProjects.Rows.Count == 1)
-        //    {
-        //        projectsModel.Id = Convert.ToInt32(dtblProjects.Rows[0][0].ToString());
-        //        projectsModel.ProjectName = dtblProjects.Rows[0][1].ToString();
-        //        return View(projectsModel);
-        //    }
+            return View(projectViewModel);
+        }
 
-        //    return RedirectToAction("Index");
-        //}
+        // POST: ProjectsController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, string ProjectName)
+        {
+            ProjectContainer pContainer = new ProjectContainer();
+            pContainer.EditProject(id, ProjectName);
 
-        //// POST: ProjectsController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(ProjectsModel projectsModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        using (SqlConnection sqlConnection =
-        //            new SqlConnection(_configuration.GetConnectionString("Dbaseconnection")))
-        //        {
-        //            string sqlQuery = "UPDATE Projects SET ProjectName = @ProjectName WHERE Id = @Id";
-        //            sqlConnection.Open();
-        //            SqlCommand sqlCmd = new SqlCommand(sqlQuery, sqlConnection);
-        //            sqlCmd.Parameters.AddWithValue("@Id", projectsModel.Id);
-        //            sqlCmd.Parameters.AddWithValue("@ProjectName", projectsModel.ProjectName);
-        //            sqlCmd.ExecuteNonQuery();
-        //        }
-        //        return RedirectToAction("Index");
+            return RedirectToAction("Index");
+        }
 
-        //    }
-        //    return View(projectsModel);
-        //}
+        // GET: ProjectsController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            ProjectContainer pContainer = new ProjectContainer();
+            pContainer.GetProjectById(id);
+            var project = pContainer.GetProjectById(id);
+            return View(new ProjectViewModel(project));
 
-        //// GET: ProjectsController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
+        }
 
-        //    using (SqlConnection sqlConnection =
-        //        new SqlConnection(_configuration.GetConnectionString("Dbaseconnection")))
-        //    {
-        //        string sqlQuery = "DELETE FROM Projects WHERE Id = @Id";
-        //        sqlConnection.Open();
-        //        SqlCommand sqlCmd = new SqlCommand(sqlQuery, sqlConnection);
-        //        sqlCmd.Parameters.AddWithValue("@Id", id);
-        //        sqlCmd.ExecuteNonQuery();
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+        // POST: ProjectsController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            ProjectContainer pContainer = new ProjectContainer();
+            pContainer.DeleteProject(id);
 
-        //// POST: ProjectsController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            return RedirectToAction("Index");
+        }
 
     }
 }

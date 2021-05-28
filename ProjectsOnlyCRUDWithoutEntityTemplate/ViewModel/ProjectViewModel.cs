@@ -23,10 +23,10 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Models
 
         }
 
-        public ProjectViewModel(ProjectModel projectDAO)
+        public ProjectViewModel(ProjectModel projectModel)
         {
-            ProjectName = projectDAO.Name;
-            Id = projectDAO.Id;
+            ProjectName = projectModel.Name;
+            Id = projectModel.Id;
         }
     }
 }
