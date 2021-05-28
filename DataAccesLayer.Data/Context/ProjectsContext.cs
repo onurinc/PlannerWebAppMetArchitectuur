@@ -33,11 +33,11 @@ namespace DataAccesLayer.Data
 
         public ProjectsDTO GetProject(int id)
         {
+            string sqlQuery = "SELECT * FROM Projects WHERE Id = @id";
             using (var conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
-
-                SqlCommand command = new SqlCommand("SELECT * FROM Projects WHERE Id = @id", conn);
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
                 command.Parameters.AddWithValue("@Id", id);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -57,11 +57,11 @@ namespace DataAccesLayer.Data
 
         public void AddProject(ProjectsDTO project)
         {
-            string sqlQuery = "INSERT INTO ProjectsTable VALUES(@name)";
+            string sqlQuery = "INSERT INTO ProjectsTable VALUES(@Name)";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("INSERT INTO ProjectsTable VALUES(@name)", conn);
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
                 command.Parameters.AddWithValue("@Name", project.ProjectName);
                 command.ExecuteNonQuery();
             }
