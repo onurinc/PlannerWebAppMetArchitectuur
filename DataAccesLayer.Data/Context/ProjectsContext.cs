@@ -80,14 +80,14 @@ namespace DataAccesLayer.Data
             }
         }
 
-        public void DeleteProject(ProjectsDTO project)
+        public void DeleteProject(int id)
         {
             string sqlQuery = "DELETE FROM Projects WHERE Id = @Id";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
-                command.Parameters.AddWithValue("@Id", project.Id);
+                command.Parameters.AddWithValue("@Id", id);
                 command.ExecuteNonQuery();
             }
         }

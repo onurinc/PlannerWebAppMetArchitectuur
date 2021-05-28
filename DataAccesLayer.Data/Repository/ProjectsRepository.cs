@@ -28,5 +28,20 @@ namespace DataAccesLayer.Data
         {
             return context.GetProject(id);
         }
+
+        public void AddProject(ProjectsDTO project)
+        {
+            context.AddProject(project);
+        }
+
+        public void EditProject(ProjectsDTO project)
+        {
+            context.EditProject(project);
+        }
+
+        public void DeleteProject(int id)
+        {
+            context.DeleteProject(id);
+        }
     }
 }

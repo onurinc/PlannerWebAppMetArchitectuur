@@ -10,7 +10,11 @@ namespace DataAccesLayer.Data
 
         ProjectsDTO GetProject(int id);
 
-        
+        void EditProject(ProjectsDTO project);
 
+        public void AddProject(ProjectsDTO project);
+
+        public void DeleteProject(int id);
     }
+
 }
