@@ -54,5 +54,42 @@ namespace DataAccesLayer.Data
                 return null;
             }
         }
+
+        public void AddProject(ProjectsDTO project)
+        {
+            string sqlQuery = "INSERT INTO ProjectsTable VALUES(@name)";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("INSERT INTO ProjectsTable VALUES(@name)", conn);
+                command.Parameters.AddWithValue("@Name", project.ProjectName);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void EditProject(ProjectsDTO project)
+        {
+            string sqlQuery = "UPDATE Projects SET ProjectName = @ProjectName WHERE Id = @Id";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@Id", project.Id);
+                command.Parameters.AddWithValue("@Name", project.ProjectName);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteProject(ProjectsDTO project)
+        {
+            string sqlQuery = "DELETE FROM Projects WHERE Id = @Id";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@Id", project.Id);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
