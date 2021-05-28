@@ -66,9 +66,8 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         {
 
             ProjectContainer pContainer = new ProjectContainer();
-            pContainer.GetProjectById(id);
-
-            return View(projectViewModel);
+            var project = pContainer.GetProjectById(id);
+            return View(new ProjectViewModel(project));
         }
 
         // POST: ProjectsController/Edit/5
@@ -86,7 +85,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         public ActionResult Delete(int id)
         {
             ProjectContainer pContainer = new ProjectContainer();
-            pContainer.GetProjectById(id);
             var project = pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
 
@@ -99,7 +97,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         {
             ProjectContainer pContainer = new ProjectContainer();
             pContainer.DeleteProject(id);
-
             return RedirectToAction("Index");
         }
 
