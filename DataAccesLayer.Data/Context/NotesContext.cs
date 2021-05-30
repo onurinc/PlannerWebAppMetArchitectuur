@@ -27,8 +27,8 @@ namespace DataAccesLayer.Data.Context
                     var note = new NotesDTO();
                     note.NoteId = Convert.ToInt32(dr["NoteId"].ToString());
                     note.NoteName = dr["NoteName"].ToString();
-                    note.Description = dr["NoteDescription"].ToString();
-                    note.Urgency = dr["NoteUrgency"].ToString();
+                    note.Description = dr["Description"].ToString();
+                    note.Urgency = dr["Urgency"].ToString();
                     note.Id = Convert.ToInt32(dr["Id"].ToString());
                     NotesList.Add(note);
                 }
@@ -39,13 +39,47 @@ namespace DataAccesLayer.Data.Context
 
         public NotesDTO GetNote(int id)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "SELECT * FROM Notes WHERE NoteId = @NoteId";
+            using (var conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@NoteId", id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var note = new NotesDTO();
+                        {
+                            note.NoteId = (int)reader["NoteId"];
+                            note.NoteName = reader["ProjectName"]?.ToString();
+                            note.Description = reader["Desription"]?.ToString();
+                            note.Urgency = reader["Urgency"]?.ToString();
+                            note.Id = (int)reader["Id"];
+
+                        };
+                        return note;
+                    }
+                }
+                return null;
+            }
         }
 
         public void AddNote(NotesDTO note)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "INSERT INTO Notes VALUES(@NoteName, @Description, @Urgency, @Id)";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@NoteName", note.NoteName);
+                command.Parameters.AddWithValue("@Description", note.Description);
+                command.Parameters.AddWithValue("@Urgency", note.NoteName);
+                command.Parameters.AddWithValue("@Id", note.Id);
+                command.ExecuteNonQuery();
+            }
         }
+
         public void EditNote(NotesDTO note)
         {
             throw new NotImplementedException();
