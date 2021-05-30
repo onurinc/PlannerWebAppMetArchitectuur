@@ -46,7 +46,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
        [HttpGet]
         public ActionResult Create(ProjectViewModel projectModel)
         {
-
             return View(projectModel);
         }
 
@@ -58,13 +57,11 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
             ProjectContainer pContainer = new ProjectContainer();
             pContainer.AddProject(ProjectName);
             return RedirectToAction(nameof(Index));
-
         }
 
         // GET: ProjectsController/Edit/5
         public ActionResult Edit(int id, ProjectViewModel projectViewModel)
         {
-
             ProjectContainer pContainer = new ProjectContainer();
             var project = pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
@@ -77,7 +74,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         {
             ProjectContainer pContainer = new ProjectContainer();
             pContainer.EditProject(id, ProjectName);
-
             return RedirectToAction("Index");
         }
 
