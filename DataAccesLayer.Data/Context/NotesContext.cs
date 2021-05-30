@@ -7,7 +7,7 @@ using DataAccesLayer.Data.InterfaceContext;
 
 namespace DataAccesLayer.Data.Context
 {
-    class NotesContext : INotesContext
+    public class NotesContext : INotesContext
     {
         public string connectionstring = "Server=localhost\\SQLEXPRESS;Database=Projects;Trusted_Connection=True;";
 

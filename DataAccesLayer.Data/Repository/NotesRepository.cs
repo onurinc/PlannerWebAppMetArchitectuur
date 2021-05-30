@@ -8,9 +8,10 @@ using DataAccesLayer.Data.InterfaceContext;
 
 namespace DataAccesLayer.Data.Repository
 {
-    class NotesRepository
+    public class NotesRepository
     {
         private INotesContext context;
+
         public NotesRepository(INotesContext context)
         {
             this.context = context;

@@ -5,7 +5,7 @@ using DataAccesLayer.Data.Data_Transfer_Object;
 
 namespace DataAccesLayer.Data.InterfaceContext
 {
-    interface INotesContext
+    public interface INotesContext
     {
         IEnumerable<NotesDTO> GetAllNotes();
 

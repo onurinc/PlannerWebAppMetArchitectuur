@@ -5,7 +5,7 @@ using DataAccesLayer.Data.Data_Transfer_Object;
 
 namespace LogicLayer.Models
 {
-    class NotesModel
+    public class NotesModel
     {
         public int NoteId { get; set; }
         public string NoteName { get; set; }

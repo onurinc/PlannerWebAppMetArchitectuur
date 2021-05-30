@@ -50,10 +50,5 @@ namespace LogicLayer.Container
             repo.DeleteProject(id);
         }
 
-        //public void AddProject(ProjectDAO project)
-        //{
-        //    ProjectsRepository.AddProject(project);
-        //}
-
     }
 }
