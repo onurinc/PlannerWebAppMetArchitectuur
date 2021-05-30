@@ -48,24 +48,21 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         }
 
         // GET: NotesController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, NotesViewModel notesViewModel)
         {
-            return View();
+            NotesContainer nContainer = new NotesContainer();
+            var note = nContainer.GetNoteById(id);
+            return View(new NotesViewModel(note));
         }
 
         // POST: NotesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int NoteId, string noteName, string description, string urgency, int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            NotesContainer nContainer = new NotesContainer();
+            nContainer.EditNote(NoteId, noteName, description, urgency, id);
+            return RedirectToAction("Index");
         }
 
         // GET: NotesController/Delete/5
