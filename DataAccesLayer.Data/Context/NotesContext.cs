@@ -13,7 +13,28 @@ namespace DataAccesLayer.Data.Context
 
         public IEnumerable<NotesDTO> GetAllNotes()
         {
-            throw new NotImplementedException();
+            var NotesList = new List<NotesDTO>();
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                string sqlQuery =
+                    "SELECT * FROM Notes";
+
+                SqlCommand cmd = new SqlCommand(sqlQuery, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    var note = new NotesDTO();
+                    note.NoteId = Convert.ToInt32(dr["NoteId"].ToString());
+                    note.NoteName = dr["NoteName"].ToString();
+                    note.Description = dr["NoteDescription"].ToString();
+                    note.Urgency = dr["NoteUrgency"].ToString();
+                    note.Id = Convert.ToInt32(dr["Id"].ToString());
+                    NotesList.Add(note);
+                }
+                conn.Close();
+            }
+            return (NotesList);
         }
 
         public NotesDTO GetNote(int id)
