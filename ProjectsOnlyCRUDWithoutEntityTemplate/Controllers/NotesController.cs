@@ -32,9 +32,9 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         }
 
         // GET: NotesController/Create
-        public ActionResult Create()
+        public ActionResult Create(NotesViewModel notesViewModel)
         {
-            return View();
+            return View(notesViewModel);
         }
 
         // POST: NotesController/Create
