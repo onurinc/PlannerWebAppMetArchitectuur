@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LogicLayer.Container;
 using LogicLayer.Models;
+using ProjectsOnlyCRUDWithoutEntityTemplate.ContainerPL;
 using ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel;
 
 namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
@@ -15,8 +16,8 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: NotesController
         public ActionResult Index()
         {
-            NotesContainer nContainer = new NotesContainer();
-            List<NotesModel> notes = new List<NotesModel>();
+            NotesContainerPL nContainer = new NotesContainerPL();
+            List<NotesViewModel> notes = new List<NotesViewModel>();
             notes = nContainer.GetAllNotes();
             return View(notes);
         }

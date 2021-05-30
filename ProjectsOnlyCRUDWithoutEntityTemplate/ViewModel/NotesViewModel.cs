@@ -11,7 +11,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel
     public class NotesViewModel
     {
         [Key]
-        [Display(Name = "NoteId")]
+        [Display(Name = "Note Id")]
         [Required(ErrorMessage = "Please enter an NoteId")]
         public int NoteId { get; set; }
         [Display(Name = "Name of the Note")]
@@ -23,7 +23,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel
         [Display(Name = "Urgency of the Note")]
         [Required(ErrorMessage = "Please enter the urgency of the Note")]
         public string Urgency { get; set; }
-        [Display(Name = "Id")]
+        [Display(Name = "Project Id")]
         [Required(ErrorMessage = "Please enter an Id")]
         public int Id { get; set; }
 
