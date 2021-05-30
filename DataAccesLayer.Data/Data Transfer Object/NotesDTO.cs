@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataAccesLayer.Data.Data_Transfer_Object
 {
-    class NotesDTO
+    public class NotesDTO
     {
         public int NoteId { get; set; }
         public string NoteName { get; set; }
