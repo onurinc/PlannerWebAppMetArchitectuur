@@ -40,16 +40,11 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: NotesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(string noteName, string description, string urgency, int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            NotesContainer nContainer = new NotesContainer();
+            nContainer.AddNote(noteName, description, urgency, id);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: NotesController/Edit/5

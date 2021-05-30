@@ -59,6 +59,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         // GET: ProjectsController/Edit/5
         public ActionResult Edit(int id, ProjectViewModel projectViewModel)
         {

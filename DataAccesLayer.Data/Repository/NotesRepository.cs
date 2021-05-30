@@ -32,17 +32,17 @@ namespace DataAccesLayer.Data.Repository
             return context.GetNote(id);
         }
 
-        public void AddProject(NotesDTO note)
+        public void AddNote(NotesDTO note)
         {
             context.AddNote(note);
         }
 
-        public void EditProject(NotesDTO note)
+        public void EditNote(NotesDTO note)
         {
             context.EditNote(note);
         }
 
-        public void DeleteProject(int id)
+        public void DeleteNote(int id)
         {
             context.DeleteNote(id);
         }

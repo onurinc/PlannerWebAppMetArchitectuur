@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DataAccesLayer.Data.Context;
+using DataAccesLayer.Data.Data_Transfer_Object;
 using DataAccesLayer.Data.Repository;
 using LogicLayer.DAO;
 using LogicLayer.Models;
@@ -32,6 +33,12 @@ namespace LogicLayer.Container
             var note = repo.GetNote(id);
             NotesModel notesModel = new NotesModel(note);
             return notesModel;
+        }
+
+        public void AddNote(string noteName, string description, string urgency, int id)
+        {
+            NotesRepository repo = new NotesRepository(context);
+            repo.AddNote(new NotesDTO() { NoteName = noteName, Description = description, Urgency = urgency, Id = id});
         }
     }
 }
