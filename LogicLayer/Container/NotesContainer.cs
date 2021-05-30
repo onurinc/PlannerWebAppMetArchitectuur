@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using DataAccesLayer.Data.Context;
 using DataAccesLayer.Data.Repository;
+using LogicLayer.DAO;
 using LogicLayer.Models;
 
 namespace LogicLayer.Container
@@ -23,6 +24,14 @@ namespace LogicLayer.Container
                 notes.Add(new NotesModel(dto));
             }
             return notes;
+        }
+
+        public NotesModel GetNoteById(int id)
+        {
+            NotesRepository repo = new NotesRepository(context);
+            var note = repo.GetNote(id);
+            NotesModel notesModel = new NotesModel(note);
+            return notesModel;
         }
     }
 }

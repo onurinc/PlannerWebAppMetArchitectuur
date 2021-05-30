@@ -52,8 +52,8 @@ namespace DataAccesLayer.Data.Context
                         var note = new NotesDTO();
                         {
                             note.NoteId = (int)reader["NoteId"];
-                            note.NoteName = reader["ProjectName"]?.ToString();
-                            note.Description = reader["Desription"]?.ToString();
+                            note.NoteName = reader["NoteName"]?.ToString();
+                            note.Description = reader["Description"]?.ToString();
                             note.Urgency = reader["Urgency"]?.ToString();
                             note.Id = (int)reader["Id"];
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LogicLayer.Container;
 using LogicLayer.Models;
+using ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel;
 
 namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
 {
@@ -23,7 +24,10 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: NotesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            NotesContainer nContainer = new NotesContainer();
+            nContainer.GetNoteById(id);
+            var note = nContainer.GetNoteById(id);
+            return View(new NotesViewModel(note));
         }
 
         // GET: NotesController/Create
