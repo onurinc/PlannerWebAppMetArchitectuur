@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -6,7 +6,13 @@ namespace DataAccesLayer.Data
 {
     public class ProjectsContext : IProjectsContext
     {
-        public string connectionstring = "Server=localhost\\SQLEXPRESS;Database=Projects;Trusted_Connection=True;";
+        // Connectionstring for my desktop
+        //public string connectionstring = "Server=localhost\\SQLEXPRESS;Database=Projects;Trusted_Connection=True;";
+
+        // Connectionstring for my laptop
+        public string connectionstring = "Data Source = DESKTOP - NCSPB7A; Initial Catalog = Projects; Integrated Security = True";
+
+
 
         public IEnumerable<ProjectsDTO> GetAllProjects()
         {
