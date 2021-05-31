@@ -66,9 +66,11 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         }
 
         // GET: NotesController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, NotesViewModel notesViewModel)
         {
-            return View();
+            NotesContainer nContainer = new NotesContainer();
+            var note = nContainer.GetNoteById(id);
+            return View(new NotesViewModel(note));
         }
 
         // POST: NotesController/Delete/5
@@ -76,14 +78,9 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            NotesContainer nContainer = new NotesContainer();
+            nContainer.DeleteNote(id);
+            return RedirectToAction("Index");
         }
     }
 }

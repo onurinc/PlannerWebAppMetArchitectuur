@@ -46,10 +46,10 @@ namespace LogicLayer.Container
             repo.EditNote(new NotesDTO() { NoteId = noteId, NoteName = noteName, Description = description, Urgency = urgency, Id = id });
         }
 
-        public void DeleteNote(int noteId)
+        public void DeleteNote(int id)
         {
             NotesRepository repo = new NotesRepository(context);
-            repo.DeleteNote(noteId);
+            repo.DeleteNote(id);
         }
     }
 }
