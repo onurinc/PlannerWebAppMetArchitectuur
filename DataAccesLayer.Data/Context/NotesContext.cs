@@ -102,7 +102,14 @@ namespace DataAccesLayer.Data.Context
 
         public void DeleteNote(int id)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "DELETE FROM Notes WHERE NoteId = @NoteId";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@NoteId", id);
+                command.ExecuteNonQuery();
+            }
         }
 
     }
