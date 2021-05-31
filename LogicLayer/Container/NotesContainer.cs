@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using DataAccesLayer.Data.Context;
 using DataAccesLayer.Data.Data_Transfer_Object;
 using DataAccesLayer.Data.Repository;
-using LogicLayer.DAO;
 using LogicLayer.Models;
 
 namespace LogicLayer.Container
@@ -17,9 +14,7 @@ namespace LogicLayer.Container
         {
             NotesRepository repo = new NotesRepository(context);
             List<NotesModel> notes = new List<NotesModel>();
-
             var notesdto = repo.GetAllNotes();
-
             foreach (var dto in notesdto)
             {
                 notes.Add(new NotesModel(dto));
@@ -40,6 +35,7 @@ namespace LogicLayer.Container
             NotesRepository repo = new NotesRepository(context);
             repo.AddNote(new NotesDTO() { NoteName = noteName, Description = description, Urgency = urgency, Id = id});
         }
+
         public void EditNote(int noteId, string noteName, string description, string urgency, int id)
         {
             NotesRepository repo = new NotesRepository(context);
