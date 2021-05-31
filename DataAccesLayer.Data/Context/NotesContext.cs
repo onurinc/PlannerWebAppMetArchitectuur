@@ -13,7 +13,7 @@ namespace DataAccesLayer.Data.Context
         //public string connectionstring = "Server=localhost\\SQLEXPRESS;Database=Projects;Trusted_Connection=True;";
 
         // Connectionstring for my laptop
-        public string connectionstring = "Data Source = DESKTOP - NCSPB7A; Initial Catalog = Projects; Integrated Security = True";
+        public string connectionstring = "Data Source=DESKTOP-NCSPB7A;Initial Catalog=Projects;Integrated Security=True";
 
         public IEnumerable<NotesDTO> GetAllNotes()
         {
@@ -78,7 +78,7 @@ namespace DataAccesLayer.Data.Context
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
                 command.Parameters.AddWithValue("@NoteName", note.NoteName);
                 command.Parameters.AddWithValue("@Description", note.Description);
-                command.Parameters.AddWithValue("@Urgency", note.NoteName);
+                command.Parameters.AddWithValue("@Urgency", note.Urgency);
                 command.Parameters.AddWithValue("@Id", note.Id);
                 command.ExecuteNonQuery();
             }
@@ -86,7 +86,18 @@ namespace DataAccesLayer.Data.Context
 
         public void EditNote(NotesDTO note)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "UPDATE Notes SET NoteName = @NoteName, Description = @Description, Urgency = @Urgency, Id = @Id WHERE NoteId = @NoteId";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@NoteId", note.NoteId);
+                command.Parameters.AddWithValue("@NoteName", note.NoteName);
+                command.Parameters.AddWithValue("@Description", note.Description);
+                command.Parameters.AddWithValue("@Urgency", note.Urgency);
+                command.Parameters.AddWithValue("@Id", note.Id);
+                command.ExecuteNonQuery();
+            }
         }
 
         public void DeleteNote(int id)
