@@ -100,5 +100,24 @@ namespace PlannerWebApp.Test.LogicLayer.Test
             Assert.IsTrue(true);
         }
 
+        //[TestMethod]
+        //public void TestProjectContainer_Add_Project_As_Int()
+        //{
+        //    // Arrange 
+        //    ProjectContainer pContainer = new ProjectContainer();
+
+        //    // Act
+        //    try
+        //    {
+        //        pContainer.AddProject(123123123);
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+
+        //    // Assert
+        //    Assert.IsTrue(false);
+        //}
+
     }
 }

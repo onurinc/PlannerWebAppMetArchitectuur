@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayer", "..\LogicLayer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planner.CLI", "..\Planner.CLI\Planner.CLI.csproj", "{03FF98BB-6BC6-4A7F-97F5-A5DB8FFF5ED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicLayer.Test", "..\LogicLayer.Test\LogicLayer.Test.csproj", "{F6C92686-682D-4032-A540-914AF0600557}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayer.Test", "..\LogicLayer.Test\LogicLayer.Test.csproj", "{F6C92686-682D-4032-A540-914AF0600557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer.Test", "..\DataAccessLayer.Test\DataAccessLayer.Test.csproj", "{0EE7F220-71CC-48B5-9F49-493419392B8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F6C92686-682D-4032-A540-914AF0600557}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6C92686-682D-4032-A540-914AF0600557}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6C92686-682D-4032-A540-914AF0600557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EE7F220-71CC-48B5-9F49-493419392B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EE7F220-71CC-48B5-9F49-493419392B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EE7F220-71CC-48B5-9F49-493419392B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EE7F220-71CC-48B5-9F49-493419392B8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
