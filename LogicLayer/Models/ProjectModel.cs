@@ -12,7 +12,7 @@ namespace LogicLayer.DAO
 
         public ProjectModel(ProjectsDTO projectDto)
         {
-            Id = projectDto.Id;
+            Id = projectDto.ProjectId;
             Name = projectDto.ProjectName;
         }
     }

@@ -41,7 +41,7 @@ namespace LogicLayer.Container
         public void EditProject(int id, string projectName)
         {
             ProjectsRepository repo = new ProjectsRepository(context);
-            repo.EditProject(new ProjectsDTO() { Id = id, ProjectName = projectName });
+            repo.EditProject(new ProjectsDTO() { ProjectId = id, ProjectName = projectName });
         }
 
         public void DeleteProject(int id)

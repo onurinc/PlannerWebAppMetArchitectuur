@@ -26,7 +26,7 @@ namespace DataAccesLayer.Data
                 while (dr.Read())
                 {
                     var project = new ProjectsDTO();
-                    project.Id = Convert.ToInt32(dr["Id"].ToString());
+                    project.ProjectId = Convert.ToInt32(dr["ProjectId"].ToString());
                     project.ProjectName = dr["ProjectName"].ToString();
                     ProjectsList.Add(project);
                 }
@@ -37,19 +37,19 @@ namespace DataAccesLayer.Data
 
         public ProjectsDTO GetProject(int id)
         {
-            string sqlQuery = "SELECT * FROM Projects WHERE Id = @id";
+            string sqlQuery = "SELECT * FROM Projects WHERE ProjectId = @ProjectId";
             using (var conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@ProjectId", id);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         var project = new ProjectsDTO();
                         {
-                            project.Id = (int) reader["Id"];
+                            project.ProjectId = (int) reader["ProjectId"];
                             project.ProjectName = reader["ProjectName"]?.ToString();
                         };
                         return project;
@@ -73,12 +73,12 @@ namespace DataAccesLayer.Data
 
         public void EditProject(ProjectsDTO project)
         {
-            string sqlQuery = "UPDATE Projects SET ProjectName = @Name WHERE Id = @Id";
+            string sqlQuery = "UPDATE Projects SET ProjectName = @Name WHERE ProjectId = @ProjectId";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
-                command.Parameters.AddWithValue("@Id", project.Id);
+                command.Parameters.AddWithValue("@ProjectId", project.ProjectId);
                 command.Parameters.AddWithValue("@Name", project.ProjectName);
                 command.ExecuteNonQuery();
             }
@@ -86,12 +86,12 @@ namespace DataAccesLayer.Data
 
         public void DeleteProject(int id)
         {
-            string sqlQuery = "DELETE FROM Projects WHERE Id = @Id";
+            string sqlQuery = "DELETE FROM Projects WHERE ProjectId = @ProjectId";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@ProjectId", id);
                 command.ExecuteNonQuery();
             }
         }
