@@ -35,15 +35,15 @@ namespace LogicLayer.Container
             return notesModel;
         }
 
-        public void AddNote(string noteName, string description, string urgency, int id)
+        public void AddNote(string noteName, string description, string urgency, int projectId)
         {
             NotesRepository repo = new NotesRepository(context);
-            repo.AddNote(new NotesDTO() { NoteName = noteName, Description = description, Urgency = urgency, Id = id });
+            repo.AddNote(new NotesDTO() { NoteName = noteName, Description = description, Urgency = urgency, ProjectId = projectId });
         }
-        public void EditNote(int noteId, string noteName, string description, string urgency, int id)
+        public void EditNote(int noteId, string noteName, string description, string urgency, int projectId)
         {
             NotesRepository repo = new NotesRepository(context);
-            repo.EditNote(new NotesDTO() { NoteId = noteId, NoteName = noteName, Description = description, Urgency = urgency, Id = id });
+            repo.EditNote(new NotesDTO() { NoteId = noteId, NoteName = noteName, Description = description, Urgency = urgency, ProjectId = projectId });
         }
 
         public void DeleteNote(int id)

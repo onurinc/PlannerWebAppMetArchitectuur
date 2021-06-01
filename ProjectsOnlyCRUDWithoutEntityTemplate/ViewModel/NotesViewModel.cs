@@ -25,7 +25,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel
         public string Urgency { get; set; }
         [Display(Name = "Project Id")]
         [Required(ErrorMessage = "Please enter an Id")]
-        public int Id { get; set; }
+        public int ProjectId { get; set; }
 
         public NotesViewModel()
         {
@@ -38,7 +38,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel
             NoteName = notesModel.NoteName;
             Description = notesModel.Description;
             Urgency = notesModel.Urgency;
-            Id = notesModel.Id;
+            ProjectId = notesModel.ProjectId;
 
         }
     }

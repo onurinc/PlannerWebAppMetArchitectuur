@@ -33,7 +33,7 @@ namespace DataAccesLayer.Data.Context
                     note.NoteName = dr["NoteName"].ToString();
                     note.Description = dr["Description"].ToString();
                     note.Urgency = dr["Urgency"].ToString();
-                    note.Id = Convert.ToInt32(dr["Id"].ToString());
+                    note.ProjectId = Convert.ToInt32(dr["ProjectId"].ToString());
                     NotesList.Add(note);
                 }
                 conn.Close();
@@ -59,7 +59,7 @@ namespace DataAccesLayer.Data.Context
                             note.NoteName = reader["NoteName"]?.ToString();
                             note.Description = reader["Description"]?.ToString();
                             note.Urgency = reader["Urgency"]?.ToString();
-                            note.Id = (int)reader["Id"];
+                            note.ProjectId = (int)reader["ProjectId"];
 
                         };
                         return note;
@@ -71,7 +71,7 @@ namespace DataAccesLayer.Data.Context
 
         public void AddNote(NotesDTO note)
         {
-            string sqlQuery = "INSERT INTO Notes VALUES(@NoteName, @Description, @Urgency, @Id)";
+            string sqlQuery = "INSERT INTO Notes VALUES(@NoteName, @Description, @Urgency, @ProjectId)";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
@@ -79,14 +79,14 @@ namespace DataAccesLayer.Data.Context
                 command.Parameters.AddWithValue("@NoteName", note.NoteName);
                 command.Parameters.AddWithValue("@Description", note.Description);
                 command.Parameters.AddWithValue("@Urgency", note.Urgency);
-                command.Parameters.AddWithValue("@Id", note.Id);
+                command.Parameters.AddWithValue("@ProjectId", note.ProjectId);
                 command.ExecuteNonQuery();
             }
         }
 
         public void EditNote(NotesDTO note)
         {
-            string sqlQuery = "UPDATE Notes SET NoteName = @NoteName, Description = @Description, Urgency = @Urgency, Id = @Id WHERE NoteId = @NoteId";
+            string sqlQuery = "UPDATE Notes SET NoteName = @NoteName, Description = @Description, Urgency = @Urgency, ProjectId = @ProjectId WHERE NoteId = @NoteId";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
@@ -95,7 +95,7 @@ namespace DataAccesLayer.Data.Context
                 command.Parameters.AddWithValue("@NoteName", note.NoteName);
                 command.Parameters.AddWithValue("@Description", note.Description);
                 command.Parameters.AddWithValue("@Urgency", note.Urgency);
-                command.Parameters.AddWithValue("@Id", note.Id);
+                command.Parameters.AddWithValue("@ProjectId", note.ProjectId);
                 command.ExecuteNonQuery();
             }
         }

@@ -11,7 +11,7 @@ namespace LogicLayer.Models
         public string NoteName { get; set; }
         public string Description { get; set; }
         public string Urgency { get; set; }
-        public int Id { get; set; }
+        public int ProjectId { get; set; }
 
 
         public NotesModel(NotesDTO noteDTO)
@@ -20,7 +20,7 @@ namespace LogicLayer.Models
             NoteName = noteDTO.NoteName;
             Description = noteDTO.Description;
             Urgency = noteDTO.Urgency;
-            Id = noteDTO.Id;
+            ProjectId = noteDTO.ProjectId;
         }
     }
 }
