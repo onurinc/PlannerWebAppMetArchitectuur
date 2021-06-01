@@ -40,10 +40,10 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: NotesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string noteName, string description, string urgency, int projectId)
+        public ActionResult Create(string noteName, string description, string urgency, int id)
         {
             NotesContainer nContainer = new NotesContainer();
-            nContainer.AddNote(noteName, description, urgency, projectId);
+            nContainer.AddNote(noteName, description, urgency, id);
             return RedirectToAction(nameof(Index));
         }
 
@@ -58,10 +58,10 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: NotesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int NoteId, string noteName, string description, string urgency, int projectId)
+        public ActionResult Edit(int NoteId, string noteName, string description, string urgency, int id)
         {
             NotesContainer nContainer = new NotesContainer();
-            nContainer.EditNote(NoteId, noteName, description, urgency, projectId);
+            nContainer.EditNote(NoteId, noteName, description, urgency, id);
             return RedirectToAction("Index");
         }
 
