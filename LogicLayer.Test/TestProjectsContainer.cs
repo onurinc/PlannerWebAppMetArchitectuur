@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using LogicLayer.Container;
 using LogicLayer.DAO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,14 +15,15 @@ namespace PlannerWebApp.Test.LogicLayer.Test
         {
             // Arrange 
             ProjectContainer pContainer = new ProjectContainer();
-            List<ProjectModel> projects = new List<ProjectModel>();
+            List<ProjectModel> projectsListOne = new List<ProjectModel>();
+            List<ProjectModel> projectsListTwo = new List<ProjectModel>();
 
             // Act
-
-            projects = pContainer.GetAllProjects();
+            projectsListOne = pContainer.GetAllProjects();
+            projectsListTwo = pContainer.GetAllProjects();
 
             // Assert
-            Assert.IsTrue(true);
+            Assert.AreEqual(projectsListOne.Count, projectsListTwo.Count);
         }
 
         [TestMethod]
@@ -29,13 +31,15 @@ namespace PlannerWebApp.Test.LogicLayer.Test
         {
             // Arrange 
             ProjectContainer pContainer = new ProjectContainer();
+            List<ProjectModel> projects = new List<ProjectModel>();
 
             // Act
-  
-                pContainer.AddProject("projectOne"); 
+            pContainer.AddProject("projectOne");
+            projects = pContainer.GetAllProjects();
+            var lastProject = projects.Last();
 
             // Assert
-            Assert.IsTrue(true);
+            Assert.AreEqual(lastProject.Name, "projectOne");
         }
 
         [TestMethod]
@@ -43,21 +47,15 @@ namespace PlannerWebApp.Test.LogicLayer.Test
         {
             // Arrange 
             ProjectContainer pContainer = new ProjectContainer();
-            bool updated;
+            List<ProjectModel> projects = new List<ProjectModel>();
 
             // Act
-            try
-            {
-                pContainer.EditProject(32, "Test");
-                updated = true;
-            }
-            catch (Exception)
-            {
-                updated = false;
-            }
-
+            pContainer.EditProject(32, "Test");
+            projects.Add(pContainer.GetProjectById(32));
+            var lastProject = projects.Last();
+ 
             // Assert
-            Assert.IsTrue(updated);
+            Assert.AreEqual(lastProject.Name, "Test");
         }
 
         [TestMethod]
@@ -68,13 +66,7 @@ namespace PlannerWebApp.Test.LogicLayer.Test
             List<ProjectModel> projects = new List<ProjectModel>();
 
             // Act
-            try
-            {
-                projects.Add(pContainer.GetProjectById(24));
-            }
-            catch (Exception)
-            {
-            }
+            projects.Add(pContainer.GetProjectById(24));
 
             // Assert
             Assert.AreEqual(projects.Count, 1);
@@ -86,18 +78,21 @@ namespace PlannerWebApp.Test.LogicLayer.Test
             // Arrange 
             ProjectContainer pContainer = new ProjectContainer();
             List<ProjectModel> projects = new List<ProjectModel>();
+            bool deleted;
 
             // Act
             try
             {
                 pContainer.DeleteProject(44);
+                deleted = true;
             }
             catch (Exception)
             {
+                deleted = false;
             }
 
             // Assert
-            Assert.IsTrue(true);
+            Assert.IsTrue(deleted);
         }
 
         //[TestMethod]

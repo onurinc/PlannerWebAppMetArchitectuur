@@ -35,7 +35,6 @@ namespace DataAccessLayer.Test
                 ProjectName = "Project from Unit Test in TestProjectsContext"
             };
 
-
             // Act
             pContext.AddProject(project);
 
@@ -48,7 +47,6 @@ namespace DataAccessLayer.Test
         {
             // Arrange 
             ProjectsContext pContext = new ProjectsContext();
-
 
             // Act
             pContext.GetProject(1);
