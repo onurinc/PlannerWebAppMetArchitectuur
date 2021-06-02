@@ -9,6 +9,16 @@ namespace LogicLayer.Container
     {
         private ProjectsContext context = new ProjectsContext();
 
+        //public ProjectContainer constructor()
+        //{
+
+        //}
+
+        //public ProjectContainer constructor(ProjectsContext pc)
+        //{
+        //    this.context = pc;
+        //}
+
         public List<ProjectModel> GetAllProjects()
         {
             ProjectsRepository repo = new ProjectsRepository(context);

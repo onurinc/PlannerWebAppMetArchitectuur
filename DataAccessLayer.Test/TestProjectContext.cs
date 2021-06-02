@@ -84,24 +84,14 @@ namespace DataAccessLayer.Test
         {
             // Arrange 
             ProjectsContext pContext = new ProjectsContext();
-            bool deleted;
 
             // Act
-            try
-            {
-                pContext.DeleteProject(44);
-                deleted = true;
-            }
-            catch (Exception)
-            {
-                deleted = false;
-            }
+            pContext.DeleteProject(44);
+            var test = pContext.GetProject(44);
 
             // Assert
-            Assert.IsTrue(deleted);
+            Assert.AreEqual(null, test );
         }
-
-
 
     }
 }
