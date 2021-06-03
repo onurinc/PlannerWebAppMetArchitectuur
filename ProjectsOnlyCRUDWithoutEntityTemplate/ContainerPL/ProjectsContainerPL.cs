@@ -9,18 +9,18 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.ContainerPL
 {
     public class ProjectsContainerPL
     {
-        ProjectContainer pContainer = new ProjectContainer();
+        //ProjectContainer pContainer = new ProjectContainer();
 
-        public List<ProjectViewModel> GetAllProjects()
-        {
-            List<ProjectViewModel> projects = new List<ProjectViewModel>();
-            var project = pContainer.GetAllProjects();
-            foreach (var p in project)
-            {
-                projects.Add(new ProjectViewModel(p));
-            }
-            return projects;
-        }
+        //public List<ProjectViewModel> GetAllProjects()
+        //{
+        //    List<ProjectViewModel> projects = new List<ProjectViewModel>();
+        //    var project = pContainer.GetAllProjects();
+        //    foreach (var p in project)
+        //    {
+        //        projects.Add(new ProjectViewModel(p));
+        //    }
+        //    return projects;
+        //}
         
     }
 }

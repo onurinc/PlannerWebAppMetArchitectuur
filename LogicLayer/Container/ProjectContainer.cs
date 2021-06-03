@@ -1,30 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataAccesLayer.Data;
+using DataAccesLayer.Data.InterfaceRepository;
 using LogicLayer.DAO;
+using LogicLayer.InterfaceContainer;
 
 namespace LogicLayer.Container
 {
-    public class ProjectContainer
+    public class ProjectContainer : IProjectContainer
     {
+
+        private readonly IProjectsRepository projectRepo;
+
+        public ProjectContainer(IProjectsRepository projectRepo)
+        {
+            this.projectRepo = projectRepo;
+        }
+
         private ProjectsContext context = new ProjectsContext();
-
-        //public ProjectContainer constructor()
-        //{
-
-        //}
-
-        //public ProjectContainer constructor(ProjectsContext pc)
-        //{
-        //    this.context = pc;
-        //}
 
         public List<ProjectModel> GetAllProjects()
         {
-            ProjectsRepository repo = new ProjectsRepository(context);
             List <ProjectModel> projects = new List<ProjectModel>();
 
-            var projectdto = repo.GetAllProjects();
+            var projectdto = projectRepo.GetAllProjects();
 
             foreach (var dto in projectdto)
             {
@@ -35,28 +34,24 @@ namespace LogicLayer.Container
 
         public ProjectModel GetProjectById(int id)
         {
-            ProjectsRepository repo = new ProjectsRepository(context);
-            var project = repo.GetProject(id);
+            var project = projectRepo.GetProject(id);
             ProjectModel projectModel = new ProjectModel(project);
             return projectModel;
         }
 
         public void AddProject(string projectName)
         {
-            ProjectsRepository repo = new ProjectsRepository(context);
-            repo.AddProject(new ProjectsDTO() { ProjectName = projectName});
+            projectRepo.AddProject(new ProjectsDTO() { ProjectName = projectName});
         }
 
         public void EditProject(int id, string projectName)
         {
-            ProjectsRepository repo = new ProjectsRepository(context);
-            repo.EditProject(new ProjectsDTO() { ProjectId = id, ProjectName = projectName });
+            projectRepo.EditProject(new ProjectsDTO() { ProjectId = id, ProjectName = projectName });
         }
 
         public void DeleteProject(int id)
         {
-            ProjectsRepository repo = new ProjectsRepository(context);
-            repo.DeleteProject(id);
+            projectRepo.DeleteProject(id);
         }
 
     }

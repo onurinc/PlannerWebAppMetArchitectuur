@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataAccesLayer.Data.InterfaceRepository;
 using System.Text;
 
 namespace DataAccesLayer.Data
 {
-    public class ProjectsRepository
+    public class ProjectsRepository : IProjectsRepository
     {
         private IProjectsContext context;
 
@@ -13,10 +14,11 @@ namespace DataAccesLayer.Data
         {
             this.context = context;
         }
-        public ProjectsRepository()
-        {
-            this.context = new ProjectsContext();
-        }
+
+        //public ProjectsRepository()
+        //{
+        //    this.context = new ProjectsContext();
+        //}
 
         public List<ProjectsDTO> GetAllProjects()
         {

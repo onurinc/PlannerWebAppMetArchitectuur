@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccesLayer.Data;
 using LogicLayer.Container;
+using LogicLayer.InterfaceContainer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,21 +15,28 @@ using ProjectsOnlyCRUDWithoutEntityTemplate.Models;
 
 namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
 {
+
     public class ProjectsController : Controller
     {
+        private readonly IProjectContainer pContainer;
+
         private readonly IConfiguration _configuration;
 
-        public ProjectsController(IConfiguration configuration)
+        public ProjectsController(IConfiguration configuration, IProjectContainer pContainer)
         {
             _configuration = configuration;
+            this.pContainer = pContainer;
         }
 
         // GET: ProjectsController
         public ActionResult Index()
         {
-            ProjectsContainerPL pContainer = new ProjectsContainerPL();
             List<ProjectViewModel> projects = new List<ProjectViewModel>();
-            projects = pContainer.GetAllProjects();
+            var project = pContainer.GetAllProjects();
+            foreach (var p in project)
+            {
+                projects.Add(new ProjectViewModel(p));
+            }
 
             return View(projects);
         }
@@ -36,7 +44,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: ProjectsController/Details/5
         public ActionResult Details(int id)
         {
-            ProjectContainer pContainer = new ProjectContainer();
+            
             pContainer.GetProjectById(id);
             var project = pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
@@ -54,7 +62,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string ProjectName)
         {
-            ProjectContainer pContainer = new ProjectContainer();
             pContainer.AddProject(ProjectName);
             return RedirectToAction(nameof(Index));
         }
@@ -63,7 +70,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: ProjectsController/Edit/5
         public ActionResult Edit(int id, ProjectViewModel projectViewModel)
         {
-            ProjectContainer pContainer = new ProjectContainer();
             var project = pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
         }
@@ -73,7 +79,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, string ProjectName)
         {
-            ProjectContainer pContainer = new ProjectContainer();
             pContainer.EditProject(id, ProjectName);
             return RedirectToAction("Index");
         }
@@ -81,7 +86,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: ProjectsController/Delete/5
         public ActionResult Delete(int id)
         {
-            ProjectContainer pContainer = new ProjectContainer();
             var project = pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
 
@@ -92,7 +96,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            ProjectContainer pContainer = new ProjectContainer();
             pContainer.DeleteProject(id);
             return RedirectToAction("Index");
         }
