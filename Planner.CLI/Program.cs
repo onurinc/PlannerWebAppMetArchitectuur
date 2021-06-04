@@ -7,13 +7,13 @@ namespace Planner.CLI
     {
         static void Main(string[] args)
         {
-            ProjectContainer pContainer = new ProjectContainer();
-            var projects = pContainer.GetAllProjects();
+            //ProjectContainer pContainer = new ProjectContainer();
+            //var projects = pContainer.GetAllProjects();
 
-            foreach (var p in projects)
-            {
-                Console.WriteLine(p);
-            }
+            //foreach (var p in projects)
+            //{
+            //    Console.WriteLine(p);
+            //}
 
             Console.ReadLine();
         }

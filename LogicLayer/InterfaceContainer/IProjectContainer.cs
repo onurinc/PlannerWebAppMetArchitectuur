@@ -15,6 +15,5 @@ namespace LogicLayer.InterfaceContainer
 
         public void DeleteProject(int id);
 
-
     }
 }

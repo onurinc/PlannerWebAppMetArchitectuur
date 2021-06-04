@@ -14,30 +14,21 @@ namespace PlannerWebApp.Test.LogicLayer.Test
     [TestClass]
     public class TestProjectsContainer
     {
-        private IProjectsRepository mockRepo;
-
-        public TestProjectsContainer()
-        {
-            mockRepo = new MockProjectsRepository();
-        }
+        private readonly IProjectsRepository mockRepo;
 
         public TestProjectsContainer(IProjectsRepository mockRepo)
         {
             this.mockRepo = mockRepo;
         }
 
-        //[TestMethod]
-        //public void TestProjectContainer_Get_All_Projects()
+        public TestProjectsContainer()
+        {
+            mockRepo = new MockProjectsRepository();
+        }
+
+        //public TestProjectsContainer()
         //{
-        //    // Arrange 
-        //    MockProjectsContext mockContext = new MockProjectsContext();
-        //    List<ProjectsDTO> ListOfProjects = new List<ProjectsDTO>();
-
-        //    // Act
-        //    ListOfProjects = mockRepo.GetAllProjects();
-
-        //    // Assert
-        //    Assert.AreEqual(ListOfProjects, mockContext.MockProjectsList);
+        //    mockRepo = new ProjectsRepository();
         //}
 
         [TestMethod]
@@ -90,5 +81,18 @@ namespace PlannerWebApp.Test.LogicLayer.Test
             Assert.AreEqual(lastProject.ProjectName, "Project edited by Unit Test");
         }
 
+        //[TestMethod]
+        //public void TestProjectContainer_Get_All_Projects()
+        //{
+        //    // Arrange 
+        //    MockProjectsContext mockContext = new MockProjectsContext();
+        //    List<ProjectsDTO> ListOfProjects = new List<ProjectsDTO>();
+
+        //    // Act
+        //    ListOfProjects = mockRepo.GetAllProjects();
+
+        //    // Assert
+        //    Assert.AreEqual(ListOfProjects, mockContext.MockProjectsList);
+        //}
     }
 }
