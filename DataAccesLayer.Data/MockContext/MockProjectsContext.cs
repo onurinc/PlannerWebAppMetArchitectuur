@@ -5,22 +5,22 @@ namespace DataAccesLayer.Data.MockContext
 {
     public class MockProjectsContext : IProjectsContext
     {
-        List<ProjectsDTO> projectsList = new List<ProjectsDTO>();
+        public List<ProjectsDTO> MockProjectsList = new List<ProjectsDTO>();
 
         public MockProjectsContext()
         { 
             ProjectsDTO projectOne = new ProjectsDTO(projectId: 1, projectName: "ProjectOne");
             ProjectsDTO projectTwo = new ProjectsDTO(projectId: 2, projectName: "ProjectTwo");
 
-            projectsList.Add(projectOne);
-            projectsList.Add(projectTwo);
+            MockProjectsList.Add(projectOne);
+            MockProjectsList.Add(projectTwo);
         }
 
         public void AddProject(ProjectsDTO project)
         {
-            ProjectsDTO lastProjectInList = projectsList[projectsList.Count - 1];
+            ProjectsDTO lastProjectInList = MockProjectsList[MockProjectsList.Count - 1];
             project.ProjectId = lastProjectInList.ProjectId + 1;
-            projectsList.Add(project);
+            MockProjectsList.Add(project);
         }
 
         public void DeleteProject(int id)
@@ -30,12 +30,12 @@ namespace DataAccesLayer.Data.MockContext
 
         public void EditProject(ProjectsDTO project)
         {
-            foreach (var p in projectsList)
+            foreach (var p in MockProjectsList)
             {
                 if (p.ProjectId == project.ProjectId)
                 {
-                    int pIndex = projectsList.IndexOf(p);
-                    projectsList[pIndex] = project;
+                    int pIndex = MockProjectsList.IndexOf(p);
+                    MockProjectsList[pIndex] = project;
                     break;
                 }
             }
@@ -43,12 +43,12 @@ namespace DataAccesLayer.Data.MockContext
 
         public IEnumerable<ProjectsDTO> GetAllProjects()
         {
-            return projectsList;
+            return MockProjectsList;
         }
 
         public ProjectsDTO GetProject(int id)
         {
-            foreach (var p in projectsList)
+            foreach (var p in MockProjectsList)
             {
                 if (p.ProjectId == id)
                 {

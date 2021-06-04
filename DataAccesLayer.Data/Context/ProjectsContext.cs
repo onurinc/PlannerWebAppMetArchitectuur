@@ -32,7 +32,7 @@ namespace DataAccesLayer.Data
                 }
                 conn.Close();
             }
-            return (ProjectsList);
+            return ProjectsList;
         }
 
         public ProjectsDTO GetProject(int id)

@@ -11,11 +11,8 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
     {
         private readonly IProjectContainer pContainer;
 
-        private readonly IConfiguration _configuration;
-
-        public ProjectsController(IConfiguration configuration, IProjectContainer pContainer)
+        public ProjectsController(IProjectContainer pContainer)
         {
-            _configuration = configuration;
             this.pContainer = pContainer;
         }
 
@@ -28,14 +25,12 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
             {
                 projects.Add(new ProjectViewModel(p));
             }
-
             return View(projects);
         }
 
         // GET: ProjectsController/Details/5
         public ActionResult Details(int id)
-        {
-            
+        { 
             pContainer.GetProjectById(id);
             var project = pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
@@ -56,7 +51,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
             pContainer.AddProject(ProjectName);
             return RedirectToAction(nameof(Index));
         }
-
 
         // GET: ProjectsController/Edit/5
         public ActionResult Edit(int id, ProjectViewModel projectViewModel)

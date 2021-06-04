@@ -1,41 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DataAccesLayer.Data.InterfaceRepository;
+using DataAccesLayer.Data.MockContext;
 
 namespace DataAccesLayer.Data.MockRepository
 {
-    class MockProjectsRepository : IProjectsRepository
+    public class MockProjectsRepository : IProjectsRepository
     {
-        private IProjectsContext context;
+        private IProjectsContext mockContext;
 
-        public MockProjectsRepository(IProjectsContext context)
+        public MockProjectsRepository()
         {
-            this.context = context;
-        }
-
-        public void AddProject(ProjectsDTO project)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteProject(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditProject(ProjectsDTO project)
-        {
-            throw new NotImplementedException();
+            mockContext = new MockProjectsContext();
         }
 
         public List<ProjectsDTO> GetAllProjects()
         {
-            throw new NotImplementedException();
+            return mockContext.GetAllProjects().ToList();
+        }
+
+        public void AddProject(ProjectsDTO project)
+        {
+            mockContext.AddProject(project);
         }
 
         public ProjectsDTO GetProject(int id)
         {
-            throw new NotImplementedException();
+            return mockContext.GetProject(id);
         }
+
+        public void EditProject(ProjectsDTO project)
+        {
+            mockContext.EditProject(project);
+        }
+
+        public void DeleteProject(int id)
+        {
+            mockContext.DeleteProject(id);
+        }
+
+
     }
 }

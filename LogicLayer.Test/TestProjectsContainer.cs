@@ -1,118 +1,94 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using LogicLayer.Container;
-//using LogicLayer.DAO;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DataAccesLayer.Data;
+using DataAccesLayer.Data.InterfaceRepository;
+using DataAccesLayer.Data.MockContext;
+using DataAccesLayer.Data.MockRepository;
+using LogicLayer.Container;
+using LogicLayer.DAO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-//namespace PlannerWebApp.Test.LogicLayer.Test
-//{
-//    [TestClass]
-//    public class UnitTestProjectsContainer
-//    {
-//        [TestMethod]
-//        public void TestProjectContainer_Get_All_Projects()
-//        {
-//            // Arrange 
-//            ProjectContainer pContainer = new ProjectContainer();
-//            List<ProjectModel> projectsListOne = new List<ProjectModel>();
-//            List<ProjectModel> projectsListTwo = new List<ProjectModel>();
+namespace PlannerWebApp.Test.LogicLayer.Test
+{
+    [TestClass]
+    public class TestProjectsContainer
+    {
+        private IProjectsRepository mockRepo;
 
-//            // Act
-//            projectsListOne = pContainer.GetAllProjects();
-//            projectsListTwo = pContainer.GetAllProjects();
+        public TestProjectsContainer()
+        {
+            mockRepo = new MockProjectsRepository();
+        }
 
-//            // Assert
-//            Assert.AreEqual(projectsListOne.Count, projectsListTwo.Count);
-//        }
+        public TestProjectsContainer(IProjectsRepository mockRepo)
+        {
+            this.mockRepo = mockRepo;
+        }
 
-//        [TestMethod]
-//        public void TestProjectContainer_Add_Project()
-//        {
-//            // Arrange 
-//            ProjectContainer pContainer = new ProjectContainer();
-//            List<ProjectModel> projects = new List<ProjectModel>();
+        //[TestMethod]
+        //public void TestProjectContainer_Get_All_Projects()
+        //{
+        //    // Arrange 
+        //    MockProjectsContext mockContext = new MockProjectsContext();
+        //    List<ProjectsDTO> ListOfProjects = new List<ProjectsDTO>();
 
-//            // Act
-//            pContainer.AddProject("projectOne");
-//            projects = pContainer.GetAllProjects();
-//            var lastProject = projects.Last();
+        //    // Act
+        //    ListOfProjects = mockRepo.GetAllProjects();
 
-//            // Assert
-//            Assert.AreEqual(lastProject.Name, "projectOne");
-//        }
+        //    // Assert
+        //    Assert.AreEqual(ListOfProjects, mockContext.MockProjectsList);
+        //}
 
-//        [TestMethod]
-//        public void TestProjectContainer_Edit_Project()
-//        {
-//            // Arrange 
-//            ProjectContainer pContainer = new ProjectContainer();
-//            List<ProjectModel> projects = new List<ProjectModel>();
+        [TestMethod]
+        public void TestProjectContainer_Add_Project()
+        {
+            // Arrange 
+            IEnumerable<ProjectsDTO> projects = new List<ProjectsDTO>();
+            ProjectsDTO project = new ProjectsDTO()
+            {
+                ProjectName = "TestProject"
+            };
 
-//            // Act
-//            pContainer.EditProject(32, "Test");
-//            projects.Add(pContainer.GetProjectById(32));
-//            var lastProject = projects.Last();
- 
-//            // Assert
-//            Assert.AreEqual(lastProject.Name, "Test");
-//        }
+            // Act
+            mockRepo.AddProject(project);
+            projects = mockRepo.GetAllProjects();
+            var lastProject = projects.Last();
 
-//        [TestMethod]
-//        public void TestProjectContainer_Get_Project_By_Id()
-//        {
-//            // Arrange 
-//            ProjectContainer pContainer = new ProjectContainer();
-//            List<ProjectModel> projects = new List<ProjectModel>();
+            // Assert
+            Assert.AreEqual(lastProject.ProjectName, "TestProject");
+        }
 
-//            // Act
-//            projects.Add(pContainer.GetProjectById(24));
+        [TestMethod]
+        public void TestProjectContainer_Get_Project()
+        {
+            // Arrange 
+            IEnumerable<ProjectsDTO> projects = new List<ProjectsDTO>();
+            List<ProjectsDTO> projectsListTwo = projects.ToList();
 
-//            // Assert
-//            Assert.AreEqual(projects.Count, 1);
-//        }
+            // Act
+            mockRepo.GetProject(1);
+            projectsListTwo.Add(mockRepo.GetProject(1));
 
-//        [TestMethod]
-//        public void TestProjectContainer_Delete_Project_By_Id()
-//        {
-//            // Arrange 
-//            ProjectContainer pContainer = new ProjectContainer();
-//            List<ProjectModel> projects = new List<ProjectModel>();
-//            bool deleted;
+            // Assert
+            Assert.AreEqual(projectsListTwo.Count(), 1);
+        }
 
-//            // Act
-//            try
-//            {
-//                pContainer.DeleteProject(44);
-//                deleted = true;
-//            }
-//            catch (Exception)
-//            {
-//                deleted = false;
-//            }
+        [TestMethod]
+        public void TestProjectContainer_Edit_Project()
+        {
+            // Arrange 
+            IEnumerable<ProjectsDTO> projects = new List<ProjectsDTO>();
+            List<ProjectsDTO> projectsListTwo = projects.ToList();
 
-//            // Assert
-//            Assert.IsTrue(deleted);
-//        }
+            // Act
+            mockRepo.EditProject(new ProjectsDTO() { ProjectId = 2, ProjectName = "Project edited by Unit Test" });
+            projectsListTwo.Add(mockRepo.GetProject(2));
+            var lastProject = projectsListTwo.Last();
 
-//        //[TestMethod]
-//        //public void TestProjectContainer_Add_Project_As_Int()
-//        //{
-//        //    // Arrange 
-//        //    ProjectContainer pContainer = new ProjectContainer();
+            // Assert
+            Assert.AreEqual(lastProject.ProjectName, "Project edited by Unit Test");
+        }
 
-//        //    // Act
-//        //    try
-//        //    {
-//        //        pContainer.AddProject(123123123);
-//        //    }
-//        //    catch (Exception)
-//        //    {
-//        //    }
-
-//        //    // Assert
-//        //    Assert.IsTrue(false);
-//        //}
-
-//    }
-//}
+    }
+}
