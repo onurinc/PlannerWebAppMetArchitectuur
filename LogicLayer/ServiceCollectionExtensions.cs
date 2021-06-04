@@ -1,12 +1,12 @@
 ﻿using DataAccesLayer.Data;
+using DataAccesLayer.Data.Context;
+using DataAccesLayer.Data.InterfaceContext;
 using DataAccesLayer.Data.InterfaceRepository;
 using LogicLayer.Container;
 using LogicLayer.InterfaceContainer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using DataAccesLayer.Data.Repository;
 
 namespace LogicLayer
 {
@@ -19,7 +19,11 @@ namespace LogicLayer
                 services.AddScoped<IProjectsContext, ProjectsContext>();
                 services.AddScoped<IProjectContainer, ProjectContainer>();
 
-                return services;
+                services.AddScoped<INotesRepository, NotesRepository>();
+                services.AddScoped<INotesContext, NotesContext>();
+                services.AddScoped<INotesContainer, NotesContainer>();
+
+            return services;
             }
             
 

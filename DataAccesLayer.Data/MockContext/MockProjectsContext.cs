@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace DataAccesLayer.Data.MockContext
 {
-    
     public class MockProjectsContext : IProjectsContext
     {
         List<ProjectsDTO> projectsList = new List<ProjectsDTO>();

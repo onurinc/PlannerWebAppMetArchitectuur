@@ -1,8 +1,5 @@
-﻿using DataAccesLayer.Data;
-using LogicLayer.DAO;
-using System;
+﻿using LogicLayer.DAO;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LogicLayer.InterfaceContainer
 {

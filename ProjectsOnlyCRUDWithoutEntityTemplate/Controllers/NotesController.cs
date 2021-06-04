@@ -1,31 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using LogicLayer.Container;
-using LogicLayer.Models;
-using ProjectsOnlyCRUDWithoutEntityTemplate.ContainerPL;
 using ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel;
+using LogicLayer.InterfaceContainer;
+using Microsoft.Extensions.Configuration;
 
 namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
 {
     public class NotesController : Controller
     {
+        private readonly INotesContainer nContainer;
+
+        private readonly IConfiguration _configuration;
+
+        public NotesController(IConfiguration configuration, INotesContainer nContainer)
+        {
+            _configuration = configuration;
+            this.nContainer = nContainer;
+        }
+
         // GET: NotesController
         public ActionResult Index()
         {
-            NotesContainerPL nContainer = new NotesContainerPL();
             List<NotesViewModel> notes = new List<NotesViewModel>();
-            notes = nContainer.GetAllNotes();
+            var note = nContainer.GetAllNotes();
+            foreach (var n in note)
+            {
+                notes.Add(new NotesViewModel(n));
+            }
+
             return View(notes);
         }
 
         // GET: NotesController/Details/5
         public ActionResult Details(int id)
         {
-            NotesContainer nContainer = new NotesContainer();
             nContainer.GetNoteById(id);
             var note = nContainer.GetNoteById(id);
             return View(new NotesViewModel(note));
@@ -42,7 +51,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string noteName, string description, string urgency, int projectId)
         {
-            NotesContainer nContainer = new NotesContainer();
             nContainer.AddNote(noteName, description, urgency, projectId);
             return RedirectToAction(nameof(Index));
         }
@@ -50,7 +58,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: NotesController/Edit/5
         public ActionResult Edit(int id, NotesViewModel notesViewModel)
         {
-            NotesContainer nContainer = new NotesContainer();
             var note = nContainer.GetNoteById(id);
             return View(new NotesViewModel(note));
         }
@@ -60,7 +67,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int NoteId, string noteName, string description, string urgency, int projectId)
         {
-            NotesContainer nContainer = new NotesContainer();
             nContainer.EditNote(NoteId, noteName, description, urgency, projectId);
             return RedirectToAction("Index");
         }
@@ -68,7 +74,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: NotesController/Delete/5
         public ActionResult Delete(int id, NotesViewModel notesViewModel)
         {
-            NotesContainer nContainer = new NotesContainer();
             var note = nContainer.GetNoteById(id);
             return View(new NotesViewModel(note));
         }
@@ -78,7 +83,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            NotesContainer nContainer = new NotesContainer();
             nContainer.DeleteNote(id);
             return RedirectToAction("Index");
         }

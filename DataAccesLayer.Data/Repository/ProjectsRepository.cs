@@ -15,11 +15,6 @@ namespace DataAccesLayer.Data
             this.context = context;
         }
 
-        //public ProjectsRepository()
-        //{
-        //    this.context = new ProjectsContext();
-        //}
-
         public List<ProjectsDTO> GetAllProjects()
         {
            return context.GetAllProjects().ToList();

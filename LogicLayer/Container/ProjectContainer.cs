@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DataAccesLayer.Data;
 using DataAccesLayer.Data.InterfaceRepository;
 using LogicLayer.DAO;
@@ -9,15 +8,12 @@ namespace LogicLayer.Container
 {
     public class ProjectContainer : IProjectContainer
     {
-
         private readonly IProjectsRepository projectRepo;
 
         public ProjectContainer(IProjectsRepository projectRepo)
         {
             this.projectRepo = projectRepo;
         }
-
-        private ProjectsContext context = new ProjectsContext();
 
         public List<ProjectModel> GetAllProjects()
         {

@@ -7,20 +7,20 @@ using ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel;
 
 namespace ProjectsOnlyCRUDWithoutEntityTemplate.ContainerPL
 {
-    public class NotesContainerPL
-    {
-        NotesContainer nContainer = new NotesContainer();
+    //public class NotesContainerPL
+    //{
+    //    NotesContainer nContainer = new NotesContainer();
 
-        public List<NotesViewModel> GetAllNotes()
-        {
-            List<NotesViewModel> notes = new List<NotesViewModel>();
-            var note = nContainer.GetAllNotes();
-            foreach (var n in note)
-            {
-                notes.Add(new NotesViewModel(n));
-            }
-            return notes;
-        }
+    //    public List<NotesViewModel> GetAllNotes()
+    //    {
+    //        List<NotesViewModel> notes = new List<NotesViewModel>();
+    //        var note = nContainer.GetAllNotes();
+    //        foreach (var n in note)
+    //        {
+    //            notes.Add(new NotesViewModel(n));
+    //        }
+    //        return notes;
+    //    }
 
-    }
+    //}
 }

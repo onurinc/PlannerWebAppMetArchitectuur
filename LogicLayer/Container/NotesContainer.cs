@@ -1,55 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using DataAccesLayer.Data.Context;
 using DataAccesLayer.Data.Data_Transfer_Object;
+using DataAccesLayer.Data.InterfaceRepository;
 using DataAccesLayer.Data.Repository;
-using LogicLayer.DAO;
+using LogicLayer.InterfaceContainer;
 using LogicLayer.Models;
 
 namespace LogicLayer.Container
 {
-    public class NotesContainer
+    public class NotesContainer : INotesContainer
     {
-        private NotesContext context = new NotesContext();
+    private NotesContext context = new NotesContext();
 
-        public List<NotesModel> GetAllNotes()
+    private readonly INotesRepository notesRepo;
+
+    public NotesContainer(INotesRepository notesRepo)
+    {
+        this.notesRepo = notesRepo;
+    }
+
+    public List<NotesModel> GetAllNotes()
+    {
+        List<NotesModel> notes = new List<NotesModel>();
+        var notesdto = notesRepo.GetAllNotes();
+        foreach (var dto in notesdto)
         {
-            NotesRepository repo = new NotesRepository(context);
-            List<NotesModel> notes = new List<NotesModel>();
-
-            var notesdto = repo.GetAllNotes();
-
-            foreach (var dto in notesdto)
-            {
-                notes.Add(new NotesModel(dto));
-            }
-            return notes;
+            notes.Add(new NotesModel(dto));
         }
 
-        public NotesModel GetNoteById(int id)
-        {
-            NotesRepository repo = new NotesRepository(context);
-            var note = repo.GetNote(id);
-            NotesModel notesModel = new NotesModel(note);
-            return notesModel;
-        }
+        return notes;
+    }
 
-        public void AddNote(string noteName, string description, string urgency, int projectId)
-        {
-            NotesRepository repo = new NotesRepository(context);
-            repo.AddNote(new NotesDTO() { NoteName = noteName, Description = description, Urgency = urgency, ProjectId = projectId });
-        }
-        public void EditNote(int noteId, string noteName, string description, string urgency, int projectId)
-        {
-            NotesRepository repo = new NotesRepository(context);
-            repo.EditNote(new NotesDTO() { NoteId = noteId, NoteName = noteName, Description = description, Urgency = urgency, ProjectId = projectId });
-        }
+    public NotesModel GetNoteById(int id)
+    {
+        var note = notesRepo.GetNote(id);
+        NotesModel notesModel = new NotesModel(note);
+        return notesModel;
+    }
 
-        public void DeleteNote(int id)
+    public void AddNote(string noteName, string description, string urgency, int projectId)
+    {
+        notesRepo.AddNote(new NotesDTO()
+            {NoteName = noteName, Description = description, Urgency = urgency, ProjectId = projectId});
+    }
+
+    public void EditNote(int noteId, string noteName, string description, string urgency, int projectId)
+    {
+        notesRepo.EditNote(new NotesDTO()
         {
-            NotesRepository repo = new NotesRepository(context);
-            repo.DeleteNote(id);
-        }
+            NoteId = noteId, NoteName = noteName, Description = description, Urgency = urgency, ProjectId = projectId
+        });
+    }
+
+    public void DeleteNote(int id)
+    {
+        notesRepo.DeleteNote(id);
+    }
     }
 }

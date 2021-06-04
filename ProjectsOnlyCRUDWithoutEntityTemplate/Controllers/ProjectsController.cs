@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using DataAccesLayer.Data;
-using LogicLayer.Container;
+﻿using System.Collections.Generic;
 using LogicLayer.InterfaceContainer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using ProjectsOnlyCRUDWithoutEntityTemplate.ContainerPL;
 using ProjectsOnlyCRUDWithoutEntityTemplate.Models;
 
 namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
 {
-
     public class ProjectsController : Controller
     {
         private readonly IProjectContainer pContainer;

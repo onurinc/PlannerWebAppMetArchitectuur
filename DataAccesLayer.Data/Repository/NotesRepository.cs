@@ -5,10 +5,11 @@ using System.Text;
 using DataAccesLayer.Data.Context;
 using DataAccesLayer.Data.Data_Transfer_Object;
 using DataAccesLayer.Data.InterfaceContext;
+using DataAccesLayer.Data.InterfaceRepository;
 
 namespace DataAccesLayer.Data.Repository
 {
-    public class NotesRepository
+    public class NotesRepository : INotesRepository
     {
         private INotesContext context;
 
