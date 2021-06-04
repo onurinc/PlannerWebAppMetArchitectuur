@@ -9,7 +9,6 @@ namespace DataAccesLayer.Data
     public class ProjectsRepository : IProjectsRepository
     {
         private IProjectsContext context;
-
         public ProjectsRepository(IProjectsContext context)
         {
             this.context = context;
@@ -34,7 +33,6 @@ namespace DataAccesLayer.Data
         {
             context.EditProject(project);
         }
-
         public void DeleteProject(int id)
         {
             context.DeleteProject(id);

@@ -1,13 +1,18 @@
-﻿using DataAccesLayer.Data;
-using DataAccesLayer.Data.InterfaceRepository;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using DataAccesLayer.Data.InterfaceRepository;
 
-namespace LogicLayer.MockRepository
+namespace DataAccesLayer.Data.MockRepository
 {
     class MockProjectsRepository : IProjectsRepository
     {
+        private IProjectsContext context;
+
+        public MockProjectsRepository(IProjectsContext context)
+        {
+            this.context = context;
+        }
+
         public void AddProject(ProjectsDTO project)
         {
             throw new NotImplementedException();
