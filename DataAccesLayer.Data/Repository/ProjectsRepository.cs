@@ -16,7 +16,6 @@ namespace DataAccesLayer.Data
         public ProjectsRepository(IProjectsContext context)
         {
             this.context = context;
-            this.context = mockContext;
         }
 
         public ProjectsRepository()
