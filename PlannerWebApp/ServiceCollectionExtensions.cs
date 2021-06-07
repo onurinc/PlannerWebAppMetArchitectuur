@@ -26,7 +26,9 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate
             services.AddScoped<IRemindersContext, RemindersContext>();
             services.AddScoped<IRemindersContainer, RemindersContainer>();
 
-
+            services.AddScoped<ISubtasksRepository, SubtasksRepository>();
+            services.AddScoped<ISubtasksContext, SubtasksContext>();
+            services.AddScoped<ISubtasksContainer, SubtasksContainer>();
 
             return services;
         }

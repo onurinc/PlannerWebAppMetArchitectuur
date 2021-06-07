@@ -14,6 +14,7 @@ namespace DataAccesLayer.Data.Repository
         {
             this._context = context;
         }
+
         public List<RemindersDTO> GetAllReminders()
         {
             return _context.GetAllReminders().ToList();

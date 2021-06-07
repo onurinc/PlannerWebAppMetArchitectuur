@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PlannerWebApp.ViewModel.SubtasksViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SubtaskId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubtaskStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubtaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubtaskDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubtaskLabel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubtaskId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubtaskStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubtaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubtaskDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubtaskLabel)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.SubtaskId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SubtaskId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SubtaskId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

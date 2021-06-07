@@ -8,6 +8,7 @@ namespace DataAccesLayer.Data.InterfaceContext
     public interface IRemindersContext
     {
         IEnumerable<RemindersDTO> GetAllReminders();
+
         public void AddReminder(RemindersDTO reminder);
 
         RemindersDTO GetReminder(int id);
