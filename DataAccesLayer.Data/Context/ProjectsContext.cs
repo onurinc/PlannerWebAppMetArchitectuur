@@ -62,6 +62,7 @@ namespace DataAccesLayer.Data
                 return null;
             }
         }
+
         public void AddProject(ProjectsDTO project)
         {
             string sqlQuery = "INSERT INTO Projects(UserId, ProjectName, ProjectDescription) VALUES(@UserId, @ProjectName, @ProjectDescription)";

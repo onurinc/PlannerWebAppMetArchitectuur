@@ -9,13 +9,13 @@ namespace DataAccesLayer.Data
 {
     public class ProjectsRepository : IProjectsRepository
     {
-        private IProjectsContext context;
+        private IProjectsContext _context;
 
         private IProjectsContext mockContext;
 
         public ProjectsRepository(IProjectsContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public ProjectsRepository()
@@ -25,27 +25,27 @@ namespace DataAccesLayer.Data
 
         public List<ProjectsDTO> GetAllProjects()
         {
-           return context.GetAllProjects().ToList();
+           return _context.GetAllProjects().ToList();
         }
 
         public ProjectsDTO GetProject(int id)
         {
-            return context.GetProject(id);
+            return _context.GetProject(id);
         }
 
         public void AddProject(ProjectsDTO project)
         {
-            context.AddProject(project);
+            _context.AddProject(project);
         }
 
         public void EditProject(ProjectsDTO project)
         {
-            context.EditProject(project);
+            _context.EditProject(project);
         }
 
         public void DeleteProject(int id)
         {
-            context.DeleteProject(id);
+            _context.DeleteProject(id);
         }
     }
 }
