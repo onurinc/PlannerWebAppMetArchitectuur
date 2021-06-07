@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataAccesLayer.Data.Data_Transfer_Object;
 using DataAccesLayer.Data.InterfaceRepository;
 using LogicLayer.InterfaceContainer;
 using LogicLayer.Models;
@@ -37,7 +38,7 @@ namespace LogicLayer.Container
 
         public void AddSubtask(int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)
         {
-            throw new NotImplementedException();
+            _subtaskRepo.AddSubtask(new SubtasksDTO() { ProjectId = projectId, SubtaskStatus = subtaskStatus, SubtaskName = subtaskName, SubtaskDescription = subtaskDescription, SubtaskLabel = subtaskLabel});
         }
 
         public void EditSubtask(int id, int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription,

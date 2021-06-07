@@ -30,28 +30,23 @@ namespace PlannerWebApp.Controllers
         // GET: SubtasksController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var subtask = _subtasksContainer.GetSubtask(id);
+            return View(new SubtasksViewModel(subtask));
         }
 
         // GET: SubtasksController/Create
-        public ActionResult Create()
+        public ActionResult Create(SubtasksViewModel subtasksViewModel)
         {
-            return View();
+            return View(subtasksViewModel);
         }
 
         // POST: SubtasksController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _subtasksContainer.AddSubtask(projectId, subtaskStatus, subtaskName, subtaskDescription, subtaskLabel);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: SubtasksController/Edit/5

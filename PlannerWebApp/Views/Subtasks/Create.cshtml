@@ -1,0 +1,58 @@
+﻿@model PlannerWebApp.ViewModel.SubtasksViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>SubtasksViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="SubtaskId" class="control-label"></label>
+                <input asp-for="SubtaskId" class="form-control" />
+                <span asp-validation-for="SubtaskId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <input asp-for="ProjectId" class="form-control" />
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SubtaskStatus" /> @Html.DisplayNameFor(model => model.SubtaskStatus)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubtaskName" class="control-label"></label>
+                <input asp-for="SubtaskName" class="form-control" />
+                <span asp-validation-for="SubtaskName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubtaskDescription" class="control-label"></label>
+                <input asp-for="SubtaskDescription" class="form-control" />
+                <span asp-validation-for="SubtaskDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubtaskLabel" class="control-label"></label>
+                <input asp-for="SubtaskLabel" class="form-control" />
+                <span asp-validation-for="SubtaskLabel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

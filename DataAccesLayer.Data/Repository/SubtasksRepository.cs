@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DataAccesLayer.Data.Data_Transfer_Object;
 using DataAccesLayer.Data.InterfaceContext;
@@ -23,22 +22,22 @@ namespace DataAccesLayer.Data.Repository
 
         public SubtasksDTO GetSubtask(int id)
         {
-            throw new NotImplementedException();
+            return _context.GetSubtask(id);
         }
 
         public void AddSubtask(SubtasksDTO subtask)
         {
-            throw new NotImplementedException();
+            _context.AddSubtask(subtask);
         }
 
         public void EditSubtask(SubtasksDTO subtask)
         {
-            throw new NotImplementedException();
+            _context.EditSubtask(subtask);
         }
 
         public void DeleteSubtask(int id)
         {
-            throw new NotImplementedException();
+            _context.DeleteSubtask(id);
         }
     }
 }

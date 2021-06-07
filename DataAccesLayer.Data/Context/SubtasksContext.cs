@@ -44,7 +44,18 @@ namespace DataAccesLayer.Data.Context
 
         public void AddSubtask(SubtasksDTO subtask)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "INSERT INTO Subtasks(ProjectId, SubtaskStatus, SubtaskName, SubtaskDescription, SubtaskLabel) VALUES(@ProjectId, @SubtaskStatus, @SubtaskName, @SubtaskDescription, @SubtaskLabel)";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@ProjectId", subtask.ProjectId);
+                command.Parameters.AddWithValue("@SubtaskStatus", subtask.SubtaskStatus);
+                command.Parameters.AddWithValue("@SubtaskName", subtask.SubtaskName);
+                command.Parameters.AddWithValue("@SubtaskDescription", subtask.SubtaskDescription);
+                command.Parameters.AddWithValue("@SubtaskLabel", subtask.SubtaskLabel);
+                command.ExecuteNonQuery();
+            }
         }
 
         public SubtasksDTO GetSubtask(int id)
