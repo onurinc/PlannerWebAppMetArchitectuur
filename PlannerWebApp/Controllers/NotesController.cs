@@ -32,7 +32,6 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: NotesController/Details/5
         public ActionResult Details(int id)
         {
-            _nContainer.GetNoteById(id);
             var note = _nContainer.GetNoteById(id);
             return View(new NotesViewModel(note));
         }

@@ -31,55 +31,46 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: RemindersController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var reminder = _remindersContainer.GetReminder(id);
+            return View(new RemindersViewModel(reminder));
         }
 
         // GET: RemindersController/Create
-        public ActionResult Create()
+        public ActionResult Create(RemindersViewModel remindersViewModel)
         {
-            return View();
+            return View(remindersViewModel);
         }
 
         // POST: RemindersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(int userId, string reminderName, string reminderDescription)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _remindersContainer.AddReminder(userId, reminderName, reminderDescription);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: RemindersController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, RemindersViewModel remindersViewModel)
         {
-            return View();
+            var reminder = _remindersContainer.GetReminder(id);
+            return View(new RemindersViewModel(reminder));
         }
 
         // POST: RemindersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, int userId, string reminderName, string reminderDescription)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _remindersContainer.EditReminder(id, userId, reminderName, reminderDescription);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: RemindersController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, RemindersViewModel remindersViewModel)
         {
-            return View();
+            var reminder = _remindersContainer.GetReminder(id);
+            return View(new RemindersViewModel(reminder));
         }
 
         // POST: RemindersController/Delete/5
@@ -87,14 +78,8 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _remindersContainer.DeleteReminder(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

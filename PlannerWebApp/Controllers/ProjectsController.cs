@@ -29,8 +29,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
 
         // GET: ProjectsController/Details/5
         public ActionResult Details(int id)
-        { 
-            _pContainer.GetProjectById(id);
+        {
             var project = _pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
         }

@@ -42,7 +42,7 @@ namespace LogicLayer.Container
 
         public void EditReminder(int id, int userId, string reminderName, string reminderDescription)
         {
-            _reminderRepo.AddReminder(new RemindersDTO() { ReminderId = id, UserId = userId, ReminderName = reminderName, ReminderDescription = reminderDescription });
+            _reminderRepo.EditReminder(new RemindersDTO() { ReminderId = id, UserId = userId, ReminderName = reminderName, ReminderDescription = reminderDescription });
         }
         public void DeleteReminder(int id)
         {
