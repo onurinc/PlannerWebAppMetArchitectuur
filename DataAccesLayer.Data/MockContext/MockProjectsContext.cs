@@ -9,11 +9,11 @@ namespace DataAccesLayer.Data.MockContext
 
         public MockProjectsContext()
         { 
-            ProjectsDTO projectOne = new ProjectsDTO(projectId: 1, projectName: "ProjectOne");
-            ProjectsDTO projectTwo = new ProjectsDTO(projectId: 2, projectName: "ProjectTwo");
+            //ProjectsDTO projectOne = new ProjectsDTO(projectId: 1, projectName: "ProjectOne");
+            //ProjectsDTO projectTwo = new ProjectsDTO(projectId: 2, projectName: "ProjectTwo");
 
-            MockProjectsList.Add(projectOne);
-            MockProjectsList.Add(projectTwo);
+            //MockProjectsList.Add(projectOne);
+            //MockProjectsList.Add(projectTwo);
         }
 
         public void AddProject(ProjectsDTO project)

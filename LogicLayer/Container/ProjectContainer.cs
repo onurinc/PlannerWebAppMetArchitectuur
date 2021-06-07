@@ -35,14 +35,14 @@ namespace LogicLayer.Container
             return projectModel;
         }
 
-        public void AddProject(string projectName)
+        public void AddProject(int userId, string projectName, string projectDescription)
         {
-            projectRepo.AddProject(new ProjectsDTO() { ProjectName = projectName});
+            projectRepo.AddProject(new ProjectsDTO() { UserId = userId, ProjectName = projectName, ProjectDescription = projectDescription });
         }
 
-        public void EditProject(int id, string projectName)
+        public void EditProject(int id, int userId, string projectName, string projectDescription)
         {
-            projectRepo.EditProject(new ProjectsDTO() { ProjectId = id, ProjectName = projectName });
+            projectRepo.EditProject(new ProjectsDTO() { ProjectId = id, UserId = userId, ProjectName = projectName, ProjectDescription = projectDescription});
         }
 
         public void DeleteProject(int id)

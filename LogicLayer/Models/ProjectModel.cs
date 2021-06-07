@@ -8,12 +8,16 @@ namespace LogicLayer.DAO
     public class ProjectModel
     {
         public int ProjectId { get; set; }
-        public string Name { get; set; }
+        public int UserId { get; set; }
+        public string ProjectName { get; set; }
+        public string ProjectDescription { get; set; }
 
         public ProjectModel(ProjectsDTO projectDto)
         {
             ProjectId = projectDto.ProjectId;
-            Name = projectDto.ProjectName;
+            UserId = projectDto.UserId;
+            ProjectName = projectDto.ProjectName;
+            ProjectDescription = projectDto.ProjectDescription;
         }
     }
 }

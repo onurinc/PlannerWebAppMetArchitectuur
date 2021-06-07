@@ -7,10 +7,10 @@ namespace DataAccesLayer.Data
     public class ProjectsContext : IProjectsContext
     {
         // Connectionstring for my desktop
-        public string connectionstring = "Server=localhost\\SQLEXPRESS;Database=Projects;Trusted_Connection=True;";
+        public string connectionstring = "Server=localhost\\SQLEXPRESS;Database=PlannerWebApp;Trusted_Connection=True;";
 
         // Connectionstring for my laptop
-        // public string connectionstring = "Data Source=DESKTOP-NCSPB7A;Initial Catalog=Projects;Integrated Security=True";
+        // public string connectionstring = "Data Source=DESKTOP-NCSPB7A;Initial Catalog=PlannerWebApp;Integrated Security=True";
 
         public IEnumerable<ProjectsDTO> GetAllProjects()
         {
@@ -27,7 +27,9 @@ namespace DataAccesLayer.Data
                 {
                     var project = new ProjectsDTO();
                     project.ProjectId = Convert.ToInt32(dr["ProjectId"].ToString());
+                    project.UserId = Convert.ToInt32(dr["UserId"].ToString());
                     project.ProjectName = dr["ProjectName"].ToString();
+                    project.ProjectDescription = dr["ProjectDescription"].ToString();
                     ProjectsList.Add(project);
                 }
                 conn.Close();
@@ -50,7 +52,9 @@ namespace DataAccesLayer.Data
                         var project = new ProjectsDTO();
                         {
                             project.ProjectId = (int) reader["ProjectId"];
+                            project.UserId = (int)reader["UserId"];
                             project.ProjectName = reader["ProjectName"]?.ToString();
+                            project.ProjectDescription = reader["ProjectDescription"]?.ToString();
                         };
                         return project;
                     }
@@ -61,25 +65,29 @@ namespace DataAccesLayer.Data
 
         public void AddProject(ProjectsDTO project)
         {
-            string sqlQuery = "INSERT INTO Projects VALUES(@Name)";
+            string sqlQuery = "INSERT INTO Projects(UserId, ProjectName, ProjectDescription) VALUES(@UserId, @ProjectName, @ProjectDescription)";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
-                command.Parameters.AddWithValue("@Name", project.ProjectName);
+                command.Parameters.AddWithValue("@UserId", project.UserId);
+                command.Parameters.AddWithValue("@ProjectName", project.ProjectName);
+                command.Parameters.AddWithValue("@ProjectDescription", project.ProjectDescription);
                 command.ExecuteNonQuery();
             }
         }
 
         public void EditProject(ProjectsDTO project)
         {
-            string sqlQuery = "UPDATE Projects SET ProjectName = @Name WHERE ProjectId = @ProjectId";
+            string sqlQuery = "UPDATE Projects SET UserId = @UserId, ProjectName = @ProjectName, ProjectDescription = ProjectDescription,  WHERE ProjectId = @ProjectId";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
                 command.Parameters.AddWithValue("@ProjectId", project.ProjectId);
-                command.Parameters.AddWithValue("@Name", project.ProjectName);
+                command.Parameters.AddWithValue("@UserId", project.UserId);
+                command.Parameters.AddWithValue("@ProjectName", project.ProjectName);
+                command.Parameters.AddWithValue("@ProjectDescription", project.ProjectDescription);
                 command.ExecuteNonQuery();
             }
         }

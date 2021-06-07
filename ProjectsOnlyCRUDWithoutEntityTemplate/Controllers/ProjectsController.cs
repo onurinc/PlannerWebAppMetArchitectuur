@@ -9,18 +9,18 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
 {
     public class ProjectsController : Controller
     {
-        private readonly IProjectContainer pContainer;
+        private readonly IProjectContainer _pContainer;
 
         public ProjectsController(IProjectContainer pContainer)
         {
-            this.pContainer = pContainer;
+            this._pContainer = pContainer;
         }
 
         // GET: ProjectsController
         public ActionResult Index()
         {
             List<ProjectViewModel> projects = new List<ProjectViewModel>();
-            var project = pContainer.GetAllProjects();
+            var project = _pContainer.GetAllProjects();
             foreach (var p in project)
             {
                 projects.Add(new ProjectViewModel(p));
@@ -31,8 +31,8 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // GET: ProjectsController/Details/5
         public ActionResult Details(int id)
         { 
-            pContainer.GetProjectById(id);
-            var project = pContainer.GetProjectById(id);
+            _pContainer.GetProjectById(id);
+            var project = _pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
         }
 
@@ -46,32 +46,32 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: ProjectsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string ProjectName)
+        public ActionResult Create(int userId, string projectName, string projectDescription)
         {
-            pContainer.AddProject(ProjectName);
+            _pContainer.AddProject(userId, projectName, projectDescription);
             return RedirectToAction(nameof(Index));
         }
 
         // GET: ProjectsController/Edit/5
         public ActionResult Edit(int id, ProjectViewModel projectViewModel)
         {
-            var project = pContainer.GetProjectById(id);
+            var project = _pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
         }
 
         // POST: ProjectsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, string ProjectName)
+        public ActionResult Edit(int id, int userId, string projectName, string projectDescription)
         {
-            pContainer.EditProject(id, ProjectName);
+            _pContainer.EditProject(id, userId, projectName, projectDescription);
             return RedirectToAction("Index");
         }
 
         // GET: ProjectsController/Delete/5
         public ActionResult Delete(int id)
         {
-            var project = pContainer.GetProjectById(id);
+            var project = _pContainer.GetProjectById(id);
             return View(new ProjectViewModel(project));
 
         }
@@ -81,7 +81,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            pContainer.DeleteProject(id);
+            _pContainer.DeleteProject(id);
             return RedirectToAction("Index");
         }
 

@@ -14,19 +14,29 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Models
         [Display(Name = "Id")]
         [Required(ErrorMessage = "Please enter an Id")]
         public int ProjectId { get; set; }
+
+        [Display(Name = "UserId")]
+        [Required(ErrorMessage = "Please enter an User Id")]
+        public int UserId { get; set; }
+
         [Display(Name = "Name of the project")]
         [Required(ErrorMessage = "Please enter the name of the project")]
         public string ProjectName { get; set; }
 
+        [Display(Name = "Project Description")]
+        [Required(ErrorMessage = "Please enter the description of the project")]
+        public string ProjectDescription { get; set; }
+
         public ProjectViewModel()
         {
-
         }
 
         public ProjectViewModel(ProjectModel projectModel)
         {
-            ProjectName = projectModel.Name;
             ProjectId = projectModel.ProjectId;
+            UserId = projectModel.UserId;
+            ProjectName = projectModel.ProjectName;
+            ProjectDescription = projectModel.ProjectDescription;
         }
     }
 }
