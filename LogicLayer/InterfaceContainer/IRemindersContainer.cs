@@ -4,7 +4,7 @@ using LogicLayer.Models;
 
 namespace LogicLayer.InterfaceContainer
 {
-    interface IRemindersContainer
+    public interface IRemindersContainer
     {
         public List<RemindersModel> GetAllReminders();
 

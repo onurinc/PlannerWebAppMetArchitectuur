@@ -6,7 +6,7 @@ using LogicLayer.Models;
 
 namespace LogicLayer.Container
 {
-    class RemindersContainer : IRemindersContainer
+    public class RemindersContainer : IRemindersContainer
     {
         private readonly IRemindersRepository _reminderRepo;
 

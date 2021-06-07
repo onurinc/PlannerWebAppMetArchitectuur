@@ -6,7 +6,7 @@ using DataAccesLayer.Data.InterfaceContext;
 
 namespace DataAccesLayer.Data.Context
 {
-    class RemindersContext : IRemindersContext
+    public class RemindersContext : IRemindersContext
     {
         // Connectionstring for my desktop
         public string connectionstring = "Server=localhost\\SQLEXPRESS;Database=PlannerWebApp;Trusted_Connection=True;";

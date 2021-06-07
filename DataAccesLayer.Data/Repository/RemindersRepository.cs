@@ -6,7 +6,7 @@ using DataAccesLayer.Data.InterfaceRepository;
 
 namespace DataAccesLayer.Data.Repository
 {
-    class RemindersRepository : IRemindersRepository
+    public class RemindersRepository : IRemindersRepository
     {
         private IRemindersContext _context;
 

@@ -22,6 +22,12 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate
             services.AddScoped<INotesContext, NotesContext>();
             services.AddScoped<INotesContainer, NotesContainer>();
 
+            services.AddScoped<IRemindersRepository, RemindersRepository>();
+            services.AddScoped<IRemindersContext, RemindersContext>();
+            services.AddScoped<IRemindersContainer, RemindersContainer>();
+
+
+
             return services;
         }
     }

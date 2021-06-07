@@ -5,7 +5,7 @@ using DataAccesLayer.Data.Data_Transfer_Object;
 
 namespace DataAccesLayer.Data.InterfaceContext
 {
-    interface IRemindersContext
+    public interface IRemindersContext
     {
         IEnumerable<RemindersDTO> GetAllReminders();
         public void AddReminder(RemindersDTO reminder);

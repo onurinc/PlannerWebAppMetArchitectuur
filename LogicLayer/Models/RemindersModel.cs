@@ -2,7 +2,7 @@
 
 namespace LogicLayer.Models
 {
-    class RemindersModel
+    public class RemindersModel
     {
         public int ReminderId { get; set; }
         public int UserId { get; set; }
