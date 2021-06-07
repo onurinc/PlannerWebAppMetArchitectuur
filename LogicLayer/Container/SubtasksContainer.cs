@@ -33,7 +33,9 @@ namespace LogicLayer.Container
 
         public SubtasksModel GetSubtask(int id)
         {
-            throw new NotImplementedException();
+            var subtask = _subtaskRepo.GetSubtask(id);
+            SubtasksModel subtasksModel = new SubtasksModel(subtask);
+            return subtasksModel;
         }
 
         public void AddSubtask(int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)
@@ -44,12 +46,13 @@ namespace LogicLayer.Container
         public void EditSubtask(int id, int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription,
             string subtaskLabel)
         {
-            throw new NotImplementedException();
+            _subtaskRepo.EditSubtask(new SubtasksDTO() {SubtaskId = id, ProjectId = projectId, SubtaskStatus = subtaskStatus, SubtaskName = subtaskName, SubtaskDescription = subtaskDescription, SubtaskLabel = subtaskLabel });
+
         }
 
         public void DeleteSubtask(int id)
         {
-            throw new NotImplementedException();
+            _subtaskRepo.DeleteSubtask(id);
         }
     }
 }

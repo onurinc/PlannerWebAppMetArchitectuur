@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LogicLayer.InterfaceContainer;
 using PlannerWebApp.ViewModel;
-using ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel;
 
 namespace PlannerWebApp.Controllers
 {
@@ -52,28 +51,24 @@ namespace PlannerWebApp.Controllers
         // GET: SubtasksController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var subtask = _subtasksContainer.GetSubtask(id);
+            return View(new SubtasksViewModel(subtask));
         }
 
         // POST: SubtasksController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _subtasksContainer.EditSubtask(id, projectId, subtaskStatus, subtaskName, subtaskDescription, subtaskLabel);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: SubtasksController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var subtask = _subtasksContainer.GetSubtask(id);
+            return View(new SubtasksViewModel(subtask));
         }
 
         // POST: SubtasksController/Delete/5
@@ -81,14 +76,8 @@ namespace PlannerWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _subtasksContainer.DeleteSubtask(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -60,17 +60,59 @@ namespace DataAccesLayer.Data.Context
 
         public SubtasksDTO GetSubtask(int id)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "SELECT * FROM Subtasks WHERE SubtaskId = @SubtaskId";
+            using (var conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@SubtaskId", id);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var subtask = new SubtasksDTO();
+                        {
+                            subtask.SubtaskId = (int)reader["SubtaskId"];
+                            subtask.ProjectId = (int)reader["ProjectId"];
+                            subtask.SubtaskStatus = (bool)reader["SubtaskStatus"];
+                            subtask.SubtaskName = reader["SubtaskName"]?.ToString();
+                            subtask.SubtaskDescription = reader["SubtaskDescription"]?.ToString();
+                            subtask.SubtaskLabel = reader["SubtaskLabel"]?.ToString();
+                        };
+                        return subtask;
+                    }
+                }
+                return null;
+            }
         }
 
         public void EditSubtask(SubtasksDTO subtask)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "UPDATE Subtasks SET ProjectId = @ProjectId, SubtaskStatus = @SubtaskStatus, SubtaskName = @SubtaskName, SubtaskDescription = @SubtaskDescription, SubtaskLabel = @SubtaskLabel WHERE SubtaskId = @SubtaskId;";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@SubtaskId", subtask.SubtaskId);
+                command.Parameters.AddWithValue("@ProjectId", subtask.ProjectId);
+                command.Parameters.AddWithValue("@SubtaskStatus", subtask.SubtaskStatus);
+                command.Parameters.AddWithValue("@SubtaskName", subtask.SubtaskName);
+                command.Parameters.AddWithValue("@SubtaskDescription", subtask.SubtaskDescription);
+                command.Parameters.AddWithValue("@SubtaskLabel", subtask.SubtaskLabel);
+                command.ExecuteNonQuery();
+            }
         }
 
         public void DeleteSubtask(int id)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "DELETE FROM Subtasks WHERE SubtaskId = @SubtaskId";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                command.Parameters.AddWithValue("@SubtaskId", id);
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
