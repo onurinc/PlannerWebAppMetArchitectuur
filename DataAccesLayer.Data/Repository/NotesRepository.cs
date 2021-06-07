@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DataAccesLayer.Data.Context;
 using DataAccesLayer.Data.Data_Transfer_Object;
 using DataAccesLayer.Data.InterfaceContext;

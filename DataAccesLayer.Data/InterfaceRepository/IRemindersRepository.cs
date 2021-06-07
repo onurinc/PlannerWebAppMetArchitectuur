@@ -3,7 +3,7 @@ using DataAccesLayer.Data.Data_Transfer_Object;
 
 namespace DataAccesLayer.Data.InterfaceRepository
 {
-    interface IRemindersRepository
+    public interface IRemindersRepository
     {
         public List<RemindersDTO> GetAllReminders();
 

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DataAccesLayer.Data.InterfaceRepository;
-using System.Text;
 using DataAccesLayer.Data.MockContext;
 
 namespace DataAccesLayer.Data
