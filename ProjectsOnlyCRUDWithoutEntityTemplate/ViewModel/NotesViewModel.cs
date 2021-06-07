@@ -14,31 +14,34 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel
         [Display(Name = "Note Id")]
         [Required(ErrorMessage = "Please enter an NoteId")]
         public int NoteId { get; set; }
-        [Display(Name = "Name of the Note")]
-        [Required(ErrorMessage = "Please enter the name of the Note")]
-        public string NoteName { get; set; }
-        [Display(Name = "Description of the Note")]
-        [Required(ErrorMessage = "Please enter the description of the Note")]
-        public string Description { get; set; }
-        [Display(Name = "Urgency of the Note")]
-        [Required(ErrorMessage = "Please enter the urgency of the Note")]
-        public string Urgency { get; set; }
+
         [Display(Name = "Project Id")]
         [Required(ErrorMessage = "Please enter an Id")]
         public int ProjectId { get; set; }
 
+        [Display(Name = "Name of the Note")]
+        [Required(ErrorMessage = "Please enter the name of the Note")]
+        public string NoteName { get; set; }
+
+        [Display(Name = "Description of the Note")]
+        [Required(ErrorMessage = "Please enter the description of the Note")]
+        public string Description { get; set; }
+
+        [Display(Name = "Urgency of the Note")]
+        [Required(ErrorMessage = "Please enter the urgency of the Note")]
+        public string Urgency { get; set; }
+
         public NotesViewModel()
         {
-
         }
 
         public NotesViewModel(NotesModel notesModel)
         {
             NoteId = notesModel.NoteId;
+            ProjectId = notesModel.ProjectId;
             NoteName = notesModel.NoteName;
             Description = notesModel.Description;
             Urgency = notesModel.Urgency;
-            ProjectId = notesModel.ProjectId;
 
         }
     }
