@@ -10,22 +10,6 @@ namespace DataAccessLayer.Test
     [TestClass]
     public class TestProjectContext
     {
-        [TestMethod] 
-        public void TestProjectContainer_Get_All_Projects()
-        {
-            // Arrange 
-            ProjectsContext pContext = new ProjectsContext();
-            IEnumerable<ProjectsDTO> projectsOne = new List<ProjectsDTO>();
-            IEnumerable<ProjectsDTO> projectsTwo = new List<ProjectsDTO>();
-            // Act
-
-            projectsOne = pContext.GetAllProjects();
-            projectsTwo = pContext.GetAllProjects();
-
-            // Assert
-            Assert.AreEqual(projectsOne, projectsTwo);
-        }
-
         [TestMethod]
         public void TestProjectContainer_Add_Project()
         {
@@ -34,7 +18,9 @@ namespace DataAccessLayer.Test
             IEnumerable<ProjectsDTO> projects = new List<ProjectsDTO>();
             ProjectsDTO project = new ProjectsDTO()
             {
-                ProjectName = "Project from Unit Test in TestProjectsContext"
+                UserId = 1,
+                ProjectName = "Project from Test in TestProjectsContext",
+                ProjectDescription = "Test Description from Test in TestProjectsContext"
             };
 
             // Act
@@ -43,7 +29,7 @@ namespace DataAccessLayer.Test
             var lastProject = projects.Last();
 
             // Assert
-            Assert.AreEqual (lastProject, "Project from Unit Test in TestProjectsContext");
+            Assert.AreEqual (lastProject.ProjectName, "Project from Test in TestProjectsContext");
         }
 
         [TestMethod]
@@ -56,7 +42,7 @@ namespace DataAccessLayer.Test
 
             // Act
             pContext.GetProject(1);
-            projectsListTwo.Add(pContext.GetProject(24));
+            projectsListTwo.Add(pContext.GetProject(3));
 
             // Assert
             Assert.AreEqual(projectsListTwo.Count(), 1);
@@ -71,12 +57,12 @@ namespace DataAccessLayer.Test
             List<ProjectsDTO> projectsListTwo = projects.ToList();
 
             // Act
-            pContext.EditProject(new ProjectsDTO() { ProjectId = 45, ProjectName = "Project edited by Unit Test in TestProjectsContext" });
-            projectsListTwo.Add(pContext.GetProject(45));
+            pContext.EditProject(new ProjectsDTO() { ProjectId = 9, UserId = 1, ProjectName = "Project edited by Test in TestProjectsContext", ProjectDescription = "Project Description Edited By Test"});
+            projectsListTwo.Add(pContext.GetProject(9));
             var lastProject = projectsListTwo.Last();
 
             // Assert
-            Assert.AreEqual(lastProject.ProjectName, "Project edited by Unit Test in TestProjectsContext");
+            Assert.AreEqual(lastProject.ProjectName, "Project edited by Test in TestProjectsContext");
         }
 
         [TestMethod]
@@ -86,12 +72,27 @@ namespace DataAccessLayer.Test
             ProjectsContext pContext = new ProjectsContext();
 
             // Act
-            pContext.DeleteProject(44);
-            var test = pContext.GetProject(44);
+            pContext.DeleteProject(8);
+            var test = pContext.GetProject(8);
 
             // Assert
             Assert.AreEqual(null, test );
         }
 
+        //[TestMethod] 
+        //public void TestProjectContainer_Get_All_Projects()
+        //{
+        //    // Arrange 
+        //    ProjectsContext pContext = new ProjectsContext();
+        //    IEnumerable<ProjectsDTO> projectsOne = new List<ProjectsDTO>();
+        //    IEnumerable<ProjectsDTO> projectsTwo = new List<ProjectsDTO>();
+        //    // Act
+
+        //    projectsOne = pContext.GetAllProjects();
+        //    projectsTwo = pContext.GetAllProjects();
+
+        //    // Assert
+        //    Assert.AreEqual(projectsOne, projectsTwo);
+        //}
     }
 }

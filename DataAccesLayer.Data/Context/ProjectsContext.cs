@@ -62,7 +62,6 @@ namespace DataAccesLayer.Data
                 return null;
             }
         }
-
         public void AddProject(ProjectsDTO project)
         {
             string sqlQuery = "INSERT INTO Projects(UserId, ProjectName, ProjectDescription) VALUES(@UserId, @ProjectName, @ProjectDescription)";
@@ -79,7 +78,7 @@ namespace DataAccesLayer.Data
 
         public void EditProject(ProjectsDTO project)
         {
-            string sqlQuery = "UPDATE Projects SET UserId = @UserId, ProjectName = @ProjectName, ProjectDescription = ProjectDescription,  WHERE ProjectId = @ProjectId";
+            string sqlQuery = "UPDATE Projects SET UserId = @UserId, ProjectName = @ProjectName, ProjectDescription = @ProjectDescription WHERE ProjectId = @ProjectId;";
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
