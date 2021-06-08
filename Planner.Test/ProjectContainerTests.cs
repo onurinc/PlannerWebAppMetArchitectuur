@@ -70,9 +70,23 @@ namespace Planner.Test
         }
 
         //[TestMethod]
+        //public void AddProject_ShouldAddAProject_WhenALegitProjectIsGiven()
+        //{
+        //    // Arrange
+        //    _projectRepoMock.Setup(x => x.AddProject(It.IsAny<ProjectsDTO>()));
+
+        //    // Act
+        //    _projectContainer.AddProject(1, "ProjectOne", "ProjectOneDescription");
+
+        //    // Assert
+        //    Assert.AreEqual();
+        //}
+
+        //[TestMethod]
         //public void GetProject_ShouldReturnNothing_WhenProjectDoesNotExist()
         //{
         //    // Arrange
+        //    bool boolCheck;
         //    var projectId = 1;
         //    var projectName = "ProjectOne";
         //    var project = new ProjectsDTO { ProjectId = projectId, ProjectName = projectName };
@@ -81,8 +95,17 @@ namespace Planner.Test
         //    // Act
         //    var actualproject = _projectContainer.GetProjectById(projectId + 1);
 
+        //    if (actualproject == null)
+        //    {
+        //        boolCheck = true;
+
+        //    }
+        //    else
+        //    {
+        //        boolCheck = false;
+        //    }
         //    // Assert
-        //    Assert.AreEqual(actualproject, null);
+        //    Assert.IsTrue(boolCheck);
         //}
     }
 }
