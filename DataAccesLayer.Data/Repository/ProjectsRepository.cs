@@ -6,7 +6,7 @@ namespace DataAccesLayer.Data
 {
     public class ProjectsRepository : IProjectsRepository
     {
-        private IProjectsContext _context;
+        private readonly IProjectsContext _context;
 
         public ProjectsRepository(IProjectsContext context)
         {

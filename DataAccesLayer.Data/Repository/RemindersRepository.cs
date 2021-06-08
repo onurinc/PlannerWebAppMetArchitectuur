@@ -8,7 +8,7 @@ namespace DataAccesLayer.Data.Repository
 {
     public class RemindersRepository : IRemindersRepository
     {
-        private IRemindersContext _context;
+        private readonly IRemindersContext _context;
 
         public RemindersRepository(IRemindersContext context)
         {

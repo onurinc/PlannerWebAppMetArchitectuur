@@ -8,7 +8,7 @@ namespace DataAccesLayer.Data.Repository
 {
     public class SubtasksRepository : ISubtasksRepository
     {
-        private ISubtasksContext _context;
+        private readonly ISubtasksContext _context;
 
         public SubtasksRepository(ISubtasksContext context)
         {
