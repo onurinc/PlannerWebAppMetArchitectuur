@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer.Test", "..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerWebApp.Test", "..\PlannerWebApp.Test\PlannerWebApp.Test.csproj", "{1751E0DA-3542-4C94-890A-12E8AE8BC8A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner.Test", "..\Planner.Test\Planner.Test.csproj", "{7474D11B-4879-4D2D-ACCA-A167298C144B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1751E0DA-3542-4C94-890A-12E8AE8BC8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1751E0DA-3542-4C94-890A-12E8AE8BC8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1751E0DA-3542-4C94-890A-12E8AE8BC8A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7474D11B-4879-4D2D-ACCA-A167298C144B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7474D11B-4879-4D2D-ACCA-A167298C144B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7474D11B-4879-4D2D-ACCA-A167298C144B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7474D11B-4879-4D2D-ACCA-A167298C144B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
