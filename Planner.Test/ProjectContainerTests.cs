@@ -96,6 +96,17 @@ namespace Planner.Test
             Assert.AreEqual("ProjectThreeDescription", addedProject.ProjectDescription);
         }
 
+        [TestMethod]
+        public void DeleteProject_IfProjecTExists()
+        {
+            // Arrange
+
+            // Act
+
+
+            // Assert
+        }
+
         //[TestMethod]
         //public void EditProject_ShouldEdit_IfLegitimateInformationIsEntered()
         //{
