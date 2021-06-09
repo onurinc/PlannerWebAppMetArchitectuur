@@ -1,5 +1,7 @@
 ﻿
 
+
+
 namespace DataAccesLayer.Data
 {
     public class ProjectsDTO

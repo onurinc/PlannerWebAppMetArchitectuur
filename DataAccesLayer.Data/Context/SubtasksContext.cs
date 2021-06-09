@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 using DataAccesLayer.Data.Data_Transfer_Object;
 using DataAccesLayer.Data.InterfaceContext;
 

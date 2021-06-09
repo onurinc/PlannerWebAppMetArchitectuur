@@ -20,7 +20,6 @@ namespace LogicLayer.Models
             SubtaskName = subtasksDto.SubtaskName;
             SubtaskDescription = subtasksDto.SubtaskDescription;
             SubtaskLabel = subtasksDto.SubtaskLabel;
-
         }
     }
 }

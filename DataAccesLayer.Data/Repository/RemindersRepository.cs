@@ -8,34 +8,34 @@ namespace DataAccesLayer.Data.Repository
 {
     public class RemindersRepository : IRemindersRepository
     {
-        private readonly IRemindersContext _context;
+        private readonly IRemindersContext _remindersContext;
 
-        public RemindersRepository(IRemindersContext context)
+        public RemindersRepository(IRemindersContext remindersContext)
         {
-            this._context = context;
+            this._remindersContext = remindersContext;
         }
 
         public List<RemindersDTO> GetAllReminders()
         {
-            return _context.GetAllReminders().ToList();
+            return _remindersContext.GetAllReminders().ToList();
         }
 
         public void AddReminder(RemindersDTO reminder)
         {
-            _context.AddReminder(reminder);
+            _remindersContext.AddReminder(reminder);
         }
         public RemindersDTO GetReminder(int id)
         {
-            return _context.GetReminder(id);
+            return _remindersContext.GetReminder(id);
         }
 
         public void EditReminder(RemindersDTO reminder)
         {
-            _context.EditReminder(reminder);
+            _remindersContext.EditReminder(reminder);
         }
         public void DeleteReminder(int id)
         {
-            _context.DeleteReminder(id);
+            _remindersContext.DeleteReminder(id);
         }
     }
 }

@@ -9,41 +9,41 @@ namespace DataAccesLayer.Data.Repository
 {
     public class NotesRepository : INotesRepository
     {
-        private INotesContext context;
+        private readonly INotesContext _notesContext;
 
-        public NotesRepository(INotesContext context)
+        public NotesRepository(INotesContext notesContext)
         {
-            this.context = context;
+            this._notesContext = notesContext;
         }
 
         public NotesRepository()
         {
-            this.context = new NotesContext();
+            this._notesContext = new NotesContext();
         }
 
         public List<NotesDTO> GetAllNotes()
         {
-            return context.GetAllNotes().ToList();
+            return _notesContext.GetAllNotes().ToList();
         }
 
         public NotesDTO GetNote(int id)
         {
-            return context.GetNote(id);
+            return _notesContext.GetNote(id);
         }
 
         public void AddNote(NotesDTO note)
         {
-            context.AddNote(note);
+            _notesContext.AddNote(note);
         }
 
         public void EditNote(NotesDTO note)
         {
-            context.EditNote(note);
+            _notesContext.EditNote(note);
         }
 
         public void DeleteNote(int id)
         {
-            context.DeleteNote(id);
+            _notesContext.DeleteNote(id);
         }
     }
 }

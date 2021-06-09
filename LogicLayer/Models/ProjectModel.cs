@@ -9,11 +9,6 @@ namespace LogicLayer.DAO
         public string ProjectName { get; set; }
         public string ProjectDescription { get; set; }
 
-        public ProjectModel()
-        {
-
-        }
-
         public ProjectModel(ProjectsDTO projectDto)
         {
             ProjectId = projectDto.ProjectId;

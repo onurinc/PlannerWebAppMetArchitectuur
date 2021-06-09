@@ -6,36 +6,36 @@ namespace DataAccesLayer.Data
 {
     public class ProjectsRepository : IProjectsRepository
     {
-        private readonly IProjectsContext _context;
+        private readonly IProjectsContext _projectsContext;
 
-        public ProjectsRepository(IProjectsContext context)
+        public ProjectsRepository(IProjectsContext projectsContext)
         {
-            this._context = context;
+            this._projectsContext = projectsContext;
         }
 
         public List<ProjectsDTO> GetAllProjects()
         {
-           return _context.GetAllProjects().ToList();
+           return _projectsContext.GetAllProjects().ToList();
         }
 
         public ProjectsDTO GetProject(int id)
         {
-            return _context.GetProject(id);
+            return _projectsContext.GetProject(id);
         }
 
         public void AddProject(ProjectsDTO project)
         {
-            _context.AddProject(project);
+            _projectsContext.AddProject(project);
         }
 
         public void EditProject(ProjectsDTO project)
         {
-            _context.EditProject(project);
+            _projectsContext.EditProject(project);
         }
 
         public void DeleteProject(int id)
         {
-            _context.DeleteProject(id);
+            _projectsContext.DeleteProject(id);
         }
     }
 }

@@ -1,4 +1,7 @@
 ﻿
+
+
+
 namespace DataAccesLayer.Data.Data_Transfer_Object
 {
     public class NotesDTO
