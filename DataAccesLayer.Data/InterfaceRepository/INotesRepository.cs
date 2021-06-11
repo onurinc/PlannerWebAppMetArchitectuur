@@ -7,6 +7,8 @@ namespace DataAccesLayer.Data.InterfaceRepository
     {
         public List<NotesDTO> GetAllNotes();
 
+        public List<NotesInnerJoinsProjectsDTO> GetAllNotesIJProjects();
+
         public NotesDTO GetNote(int id);
 
         public void AddNote(NotesDTO note);

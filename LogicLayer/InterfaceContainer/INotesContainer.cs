@@ -7,6 +7,8 @@ namespace LogicLayer.InterfaceContainer
     {
         public List<NotesModel> GetAllNotes();
 
+        public List<NotesIJProjectsModel> GetAllNotesIJProjects();
+
         public NotesModel GetNoteById(int id);
 
         public void AddNote(string noteName, string description, string urgency, int projectId);

@@ -23,8 +23,18 @@ namespace LogicLayer.Container
             {
                 notes.Add(new NotesModel(dto));
             }
-
             return notes;
+        }
+
+        public List<NotesIJProjectsModel> GetAllNotesIJProjects()
+        {
+            List<NotesIJProjectsModel> notesIJProjects = new List<NotesIJProjectsModel>();
+            var notesIJProjectsDto = _notesRepo.GetAllNotesIJProjects();
+            foreach (var dto in notesIJProjectsDto)
+            {
+                notesIJProjects.Add(new NotesIJProjectsModel(dto));
+            }
+            return notesIJProjects;
         }
 
         public NotesModel GetNoteById(int id)

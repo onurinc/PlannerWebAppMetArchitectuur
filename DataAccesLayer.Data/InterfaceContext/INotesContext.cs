@@ -7,6 +7,8 @@ namespace DataAccesLayer.Data.InterfaceContext
     {
         IEnumerable<NotesDTO> GetAllNotes();
 
+        IEnumerable<NotesInnerJoinsProjectsDTO> GetAllNotesIJProjects();
+
         NotesDTO GetNote(int id);
 
         void EditNote(NotesDTO note);

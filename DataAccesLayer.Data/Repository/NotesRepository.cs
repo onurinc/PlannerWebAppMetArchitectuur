@@ -26,6 +26,11 @@ namespace DataAccesLayer.Data.Repository
             return _notesContext.GetAllNotes().ToList();
         }
 
+        public List<NotesInnerJoinsProjectsDTO> GetAllNotesIJProjects()
+        {
+            return _notesContext.GetAllNotesIJProjects().ToList();
+        }
+
         public NotesDTO GetNote(int id)
         {
             return _notesContext.GetNote(id);

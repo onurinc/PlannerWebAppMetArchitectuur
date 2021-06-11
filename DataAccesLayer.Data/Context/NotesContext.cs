@@ -40,6 +40,32 @@ namespace DataAccesLayer.Data.Context
             return (NotesList);
         }
 
+        public IEnumerable<NotesInnerJoinsProjectsDTO> GetAllNotesIJProjects()
+        {
+            var NotesIJProjectsList = new List<NotesInnerJoinsProjectsDTO>();
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                string sqlQuery =
+                    "SELECT Notes.NoteId, Projects.ProjectName, Notes.NoteName, Notes.Description, Notes.Urgency FROM Notes INNER JOIN Projects On Notes.ProjectId=Projects.ProjectId";
+
+                SqlCommand cmd = new SqlCommand(sqlQuery, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    var NoteIJProjects = new NotesInnerJoinsProjectsDTO();
+                    NoteIJProjects.NoteId = Convert.ToInt32(dr["NoteId"].ToString());
+                    NoteIJProjects.ProjectName = (dr["ProjectName"].ToString());
+                    NoteIJProjects.NoteName = dr["NoteName"].ToString();
+                    NoteIJProjects.Description = dr["Description"].ToString();
+                    NoteIJProjects.Urgency = dr["Urgency"].ToString();
+                    NotesIJProjectsList.Add(NoteIJProjects);
+                }
+                conn.Close();
+            }
+            return (NotesIJProjectsList);
+        }
+
         public NotesDTO GetNote(int id)
         {
             string sqlQuery = "SELECT * FROM Notes WHERE NoteId = @NoteId";
