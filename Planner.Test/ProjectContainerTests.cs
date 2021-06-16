@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using DataAccesLayer.Data;
 using DataAccesLayer.Data.InterfaceRepository;
 using LogicLayer.Container;
@@ -22,7 +20,6 @@ namespace Planner.Test
         public ProjectContainerTests()
         {
             _projectContainer = new ProjectContainer(_mockProjectsRepository.Object);
-
         }
 
         List<ProjectsDTO> ProjectList = new List<ProjectsDTO>
@@ -41,7 +38,7 @@ namespace Planner.Test
         public void GetProject_ShouldReturnProject_WhenProjectExists()
         {
             // Arrange
-            _mockProjectsRepository.Setup(x => x.GetProject(It.IsAny<int>()))
+        _mockProjectsRepository.Setup(x => x.GetProject(It.IsAny<int>()))
                 .Returns((int i) => ProjectList.Single(x => x.ProjectId == i));
             // Act
             var project = _projectContainer.GetProjectById(2);
@@ -57,13 +54,17 @@ namespace Planner.Test
         {
             // Arrange
             List<ProjectModel> ProjectListOne = new List<ProjectModel>();
+            List<ProjectModel> ProjectListTwo = new List<ProjectModel>();
             _mockProjectsRepository.Setup(x => x.GetAllProjects()).Returns(ProjectList);
 
             // Act
             ProjectListOne = _projectContainer.GetAllProjects();
+            // ProjectListTwo = _projectContainer.GetAllProjects();
+
 
             // Assert
             Assert.AreEqual(2, ProjectListOne.Count);
+            // Assert.AreEqual(ProjectListTwo, ProjectListOne.Count);
         }
 
         [TestMethod]
@@ -96,16 +97,35 @@ namespace Planner.Test
             Assert.AreEqual("ProjectThreeDescription", addedProject.ProjectDescription);
         }
 
-        [TestMethod]
-        public void DeleteProject_IfProjecTExists()
-        {
-            // Arrange
+        //[TestMethod]
+        //public void DeleteProject_IfProjectExists()
+        //{
+        //    // Arrange
+        //    var projects = new List<ProjectsDTO>
+        //    {
+        //        new ProjectsDTO()
+        //        {
+        //            ProjectId = 1, ProjectName = "ProjectOne", ProjectDescription = "ProjectOne Description"
+        //        },
+        //        new ProjectsDTO()
+        //        {
+        //            ProjectId = 2, ProjectName = "ProjectTwo", ProjectDescription = "ProjectTwo Description"
+        //        }
+        //    };
 
-            // Act
+        //    // _mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => ProjectList.Remove(entity));
+        //    _mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => projects.Remove(entity));
+        //    _mockProjectsRepository.Setup(x => x.GetAllProjects()).Returns(ProjectList);
+        //    List<ProjectModel> ProjectListForCheck = new List<ProjectModel>();
+        //    int projectToDelete = 1;
 
+        //    // Act
+        //    _projectContainer.DeleteProject(projectToDelete);
+        //    ProjectListForCheck = _projectContainer.GetAllProjects();
 
-            // Assert
-        }
+        //    // Assert
+        //    Assert.AreEqual(ProjectListForCheck.Count, 1);
+        //}
 
         //[TestMethod]
         //public void EditProject_ShouldEdit_IfLegitimateInformationIsEntered()

@@ -44,7 +44,6 @@ namespace LogicLayer.Container
             string subtaskLabel)
         {
             _subtaskRepo.EditSubtask(new SubtasksDTO() {SubtaskId = id, ProjectId = projectId, SubtaskStatus = subtaskStatus, SubtaskName = subtaskName, SubtaskDescription = subtaskDescription, SubtaskLabel = subtaskLabel });
-
         }
 
         public void DeleteSubtask(int id)
