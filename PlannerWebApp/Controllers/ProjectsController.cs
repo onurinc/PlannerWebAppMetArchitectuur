@@ -44,8 +44,12 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: ProjectsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int userId, string projectName, string projectDescription)
+        public ActionResult Create([FromForm]int userId, string projectName, string projectDescription)
         {
+            if (userId == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             _pContainer.AddProject(userId, projectName, projectDescription);
             return RedirectToAction(nameof(Index));
         }

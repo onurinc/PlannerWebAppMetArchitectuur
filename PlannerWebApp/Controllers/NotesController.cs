@@ -10,10 +10,12 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
     public class NotesController : Controller
     {
         private readonly INotesContainer _nContainer;
+        private readonly IProjectContainer _pContainer;
 
-        public NotesController(INotesContainer nContainer)
+        public NotesController(INotesContainer nContainer, IProjectContainer pContainer)
         {
             this._nContainer = nContainer;
+            this._pContainer = pContainer;
         }
 
         // GET: NotesController
@@ -47,6 +49,15 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string noteName, string description, string urgency, int projectId)
         {
+            if (projectId == null)
+            {
+                // TODO errormessage
+                return RedirectToAction(nameof(Index));
+            }
+            if (_pContainer.GetProjectById(projectId) == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             _nContainer.AddNote(noteName, description, urgency, projectId);
             return RedirectToAction(nameof(Index));
         }
