@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjectsOnlyCRUDWithoutEntityTemplate.ViewModel;
 using LogicLayer.InterfaceContainer;
-using Microsoft.Extensions.Configuration;
 
 namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
 {
@@ -52,6 +51,7 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
             var project = _pContainer.GetProjectById(projectId);
             if (project == null)
             {
+                ViewBag.Error = "You need to use a Project Id that exists.";
                 return View(notesViewModel);
             }
             _nContainer.AddNote(noteName, description, urgency, projectId);

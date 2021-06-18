@@ -99,34 +99,62 @@ namespace Planner.Test
         }
 
         [TestMethod]
-        public void DeleteProject_IfProjectExists()
+        [ExpectedException(typeof(FormatException))]
+        public void ShouldThrowException_IfFalseProjectIsGiven()
         {
             // Arrange
-            var projects = new List<ProjectsDTO>
-            {
-                new ProjectsDTO()
+            _mockProjectsRepository.Setup(x => x.AddProject(It.IsAny<ProjectsDTO>())).Callback(
+                (ProjectsDTO project) =>
                 {
-                    ProjectId = 1, ProjectName = "ProjectOne", ProjectDescription = "ProjectOne Description"
-                },
-                new ProjectsDTO()
-                {
-                    ProjectId = 2, ProjectName = "ProjectTwo", ProjectDescription = "ProjectTwo Description"
-                }
-            };
-
-            //_mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => ProjectList.Remove(entity));
-            _mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => projects.Remove(entity));
-            _mockProjectsRepository.Setup(x => x.GetAllProjects()).Returns(ProjectList);
-            List<ProjectModel> ProjectListForCheck = new List<ProjectModel>();
-            int projectToDelete = 1;
+                    if (project.ProjectId.Equals(default(int)))
+                    {
+                        project.ProjectId = ProjectList.Count() + 1;
+                        ProjectList.Add(project);
+                    }
+                    else
+                    {
+                        throw new Exception(
+                            "Project can not be added, make sure you enter the corresponding information");
+                    }
+                });
 
             // Act
-            _projectContainer.DeleteProject(projectToDelete);
-            ProjectListForCheck = _projectContainer.GetAllProjects();
+            _projectContainer.AddProject(Int32.Parse("numberThree"), "ProjectThree", "ProjectThreeDescription");
+            var addedProject = ProjectList.Last();
 
             // Assert
-            Assert.AreEqual(ProjectListForCheck.Count, 1);
+
         }
+
+        //[TestMethod]
+        //public void DeleteProject_IfProjectExists()
+        //{
+        //    // Arrange
+        //    var projects = new List<ProjectsDTO>
+        //    {
+        //        new ProjectsDTO()
+        //        {
+        //            ProjectId = 1, ProjectName = "ProjectOne", ProjectDescription = "ProjectOne Description"
+        //        },
+        //        new ProjectsDTO()
+        //        {
+        //            ProjectId = 2, ProjectName = "ProjectTwo", ProjectDescription = "ProjectTwo Description"
+        //        }
+        //    };
+
+        //    //_mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => ProjectList.Remove(entity));
+        //    _mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => projects.Remove(entity));
+        //    _mockProjectsRepository.Setup(x => x.GetAllProjects()).Returns(ProjectList);
+        //    List<ProjectModel> ProjectListForCheck = new List<ProjectModel>();
+        //    int projectToDelete = 1;
+
+        //    // Act
+        //    _projectContainer.DeleteProject(projectToDelete);
+        //    ProjectListForCheck = _projectContainer.GetAllProjects();
+
+        //    // Assert
+        //    Assert.AreEqual(ProjectListForCheck.Count, 1);
+        //}
 
         //[TestMethod]
         //public void EditProject_ShouldEdit_IfLegitimateInformationIsEntered()

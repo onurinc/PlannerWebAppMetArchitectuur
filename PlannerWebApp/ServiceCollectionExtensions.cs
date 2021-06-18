@@ -30,6 +30,10 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate
             services.AddScoped<ISubtasksContext, SubtasksContext>();
             services.AddScoped<ISubtasksContainer, SubtasksContainer>();
 
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IUsersContext, UsersContext>();
+            services.AddScoped<IUsersContainer, UsersContainer>();
+
             return services;
         }
     }
