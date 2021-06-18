@@ -47,19 +47,15 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: NotesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string noteName, string description, string urgency, int projectId)
+        public ActionResult Create(NotesViewModel notesViewModel, string noteName, string description, string urgency, int projectId)
         {
-            if (projectId == null)
+            var project = _pContainer.GetProjectById(projectId);
+            if (project == null)
             {
-                // TODO errormessage
-                return RedirectToAction(nameof(Index));
-            }
-            if (_pContainer.GetProjectById(projectId) == null)
-            {
-                return RedirectToAction(nameof(Index));
+                return View(notesViewModel);
             }
             _nContainer.AddNote(noteName, description, urgency, projectId);
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
         }
 
         // GET: NotesController/Edit/5

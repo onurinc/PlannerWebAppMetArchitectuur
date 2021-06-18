@@ -72,6 +72,7 @@ namespace Planner.Test
 
             // Assert
             Assert.IsInstanceOfType(note, typeof(NotesModel));
+            Assert.AreEqual(1, note.ProjectId);
             Assert.AreEqual(2, note.NoteId);
             Assert.AreEqual(note.NoteName, "NoteTwo");
             Assert.AreEqual(note.Description, "NoteTwo Description");

@@ -38,8 +38,9 @@ namespace Planner.Test
         public void GetProject_ShouldReturnProject_WhenProjectExists()
         {
             // Arrange
-        _mockProjectsRepository.Setup(x => x.GetProject(It.IsAny<int>()))
+            _mockProjectsRepository.Setup(x => x.GetProject(It.IsAny<int>()))
                 .Returns((int i) => ProjectList.Single(x => x.ProjectId == i));
+
             // Act
             var project = _projectContainer.GetProjectById(2);
 
@@ -97,35 +98,35 @@ namespace Planner.Test
             Assert.AreEqual("ProjectThreeDescription", addedProject.ProjectDescription);
         }
 
-        //[TestMethod]
-        //public void DeleteProject_IfProjectExists()
-        //{
-        //    // Arrange
-        //    var projects = new List<ProjectsDTO>
-        //    {
-        //        new ProjectsDTO()
-        //        {
-        //            ProjectId = 1, ProjectName = "ProjectOne", ProjectDescription = "ProjectOne Description"
-        //        },
-        //        new ProjectsDTO()
-        //        {
-        //            ProjectId = 2, ProjectName = "ProjectTwo", ProjectDescription = "ProjectTwo Description"
-        //        }
-        //    };
+        [TestMethod]
+        public void DeleteProject_IfProjectExists()
+        {
+            // Arrange
+            var projects = new List<ProjectsDTO>
+            {
+                new ProjectsDTO()
+                {
+                    ProjectId = 1, ProjectName = "ProjectOne", ProjectDescription = "ProjectOne Description"
+                },
+                new ProjectsDTO()
+                {
+                    ProjectId = 2, ProjectName = "ProjectTwo", ProjectDescription = "ProjectTwo Description"
+                }
+            };
 
-        //    // _mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => ProjectList.Remove(entity));
-        //    _mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => projects.Remove(entity));
-        //    _mockProjectsRepository.Setup(x => x.GetAllProjects()).Returns(ProjectList);
-        //    List<ProjectModel> ProjectListForCheck = new List<ProjectModel>();
-        //    int projectToDelete = 1;
+            //_mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => ProjectList.Remove(entity));
+            _mockProjectsRepository.Setup(x => x.DeleteProject(It.IsAny<int>())).Callback<ProjectsDTO>((entity) => projects.Remove(entity));
+            _mockProjectsRepository.Setup(x => x.GetAllProjects()).Returns(ProjectList);
+            List<ProjectModel> ProjectListForCheck = new List<ProjectModel>();
+            int projectToDelete = 1;
 
-        //    // Act
-        //    _projectContainer.DeleteProject(projectToDelete);
-        //    ProjectListForCheck = _projectContainer.GetAllProjects();
+            // Act
+            _projectContainer.DeleteProject(projectToDelete);
+            ProjectListForCheck = _projectContainer.GetAllProjects();
 
-        //    // Assert
-        //    Assert.AreEqual(ProjectListForCheck.Count, 1);
-        //}
+            // Assert
+            Assert.AreEqual(ProjectListForCheck.Count, 1);
+        }
 
         //[TestMethod]
         //public void EditProject_ShouldEdit_IfLegitimateInformationIsEntered()

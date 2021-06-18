@@ -1,4 +1,5 @@
-﻿using DataAccesLayer.Data;
+﻿using System;
+using DataAccesLayer.Data;
 
 namespace LogicLayer.DAO
 {
@@ -12,9 +13,9 @@ namespace LogicLayer.DAO
         public ProjectModel(ProjectsDTO projectDto)
         {
             ProjectId = projectDto.ProjectId;
-            UserId = projectDto.UserId;
-            ProjectName = projectDto.ProjectName;
-            ProjectDescription = projectDto.ProjectDescription;
+                UserId = projectDto.UserId;
+                ProjectName = projectDto.ProjectName;
+                ProjectDescription = projectDto.ProjectDescription;
         }
     }
 }

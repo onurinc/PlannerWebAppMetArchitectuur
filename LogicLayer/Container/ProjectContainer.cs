@@ -30,8 +30,12 @@ namespace LogicLayer.Container
         public ProjectModel GetProjectById(int id)
         {
             var project = _projectRepo.GetProject(id);
-            ProjectModel projectModel = new ProjectModel(project);
-            return projectModel;
+            if (project != null)
+            {
+                ProjectModel projectModel = new ProjectModel(project);
+                return projectModel;
+            }
+            return null;
         }
         public void AddProject(int userId, string projectName, string projectDescription)
         {
