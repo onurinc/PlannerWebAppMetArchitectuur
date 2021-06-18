@@ -14,11 +14,11 @@ namespace Planner.Test
     {
         private readonly UsersContainer _usersContainer;
 
-        private readonly Mock<IUsersRepository> _mockProjectsRepository = new Mock<IUsersRepository>();
+        private readonly Mock<IUsersRepository> _mockUsersRepository = new Mock<IUsersRepository>();
 
         public UsersContainerTests()
         {
-            _usersContainer = new UsersContainer(_mockProjectsRepository.Object);
+            _usersContainer = new UsersContainer(_mockUsersRepository.Object);
         }
 
         List<UsersDTO> usersList = new List<UsersDTO>
@@ -39,7 +39,7 @@ namespace Planner.Test
             // Arrange
             List<UsersModel> UserListOne = new List<UsersModel>();
             List<UsersModel> UserListTwo = new List<UsersModel>();
-            _mockProjectsRepository.Setup(x => x.GetAllUsers()).Returns(usersList);
+            _mockUsersRepository.Setup(x => x.GetAllUsers()).Returns(usersList);
 
             // Act
             UserListOne = _usersContainer.GetAllUsers();
@@ -58,7 +58,7 @@ namespace Planner.Test
         public void GetUser_ShouldReturnUser_IfUserExists()
         {
             // Arrange
-            _mockProjectsRepository.Setup(x => x.GetUser(It.IsAny<int>()))
+            _mockUsersRepository.Setup(x => x.GetUser(It.IsAny<int>()))
                 .Returns((int i) => usersList.Single(x => x.UserId == i));
 
             // Act
