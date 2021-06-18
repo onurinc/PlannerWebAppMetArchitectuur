@@ -37,8 +37,9 @@
                 <input asp-for="Urgency" class="form-control" />
                 <span asp-validation-for="Urgency" class="text-danger"></span>
             </div>
+            <h3>@ViewBag.Error</h3>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary"/>
             </div>
         </form>
     </div>

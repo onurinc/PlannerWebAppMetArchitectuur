@@ -68,8 +68,15 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: NotesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int NoteId, string noteName, string description, string urgency, int projectId)
+        public ActionResult Edit(NotesViewModel notesViewModel, int NoteId, string noteName, string description, string urgency, int projectId)
         {
+            var project = _pContainer.GetProjectById(projectId);
+            if (project == null)
+            {
+                ViewBag.Error = "You need to use a Project Id that exists.";
+                return View(notesViewModel);
+            }
+
             _nContainer.EditNote(NoteId, noteName, description, urgency, projectId);
             return RedirectToAction("Index");
         }

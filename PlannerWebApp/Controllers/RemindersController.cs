@@ -68,8 +68,14 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: RemindersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, int userId, string reminderName, string reminderDescription)
+        public ActionResult Edit(int id, RemindersViewModel remindersViewModel, int userId, string reminderName, string reminderDescription)
         {
+            var user = _usersContainer.GetUser(userId);
+            if (user == null)
+            {
+                ViewBag.Error = "You need to use a User Id that exists.";
+                return View(remindersViewModel);
+            }
             _remindersContainer.EditReminder(id, userId, reminderName, reminderDescription);
             return RedirectToAction(nameof(Index));
         }

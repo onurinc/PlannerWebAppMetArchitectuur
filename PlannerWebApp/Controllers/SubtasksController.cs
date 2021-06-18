@@ -66,8 +66,14 @@ namespace PlannerWebApp.Controllers
         // POST: SubtasksController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)
+        public ActionResult Edit(int id, SubtasksViewModel subtasksViewModel, int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)
         {
+            var project = _pContainer.GetProjectById(projectId);
+            if (project == null)
+            {
+                ViewBag.Error = "You need to use a Project Id that exists.";
+                return View(subtasksViewModel);
+            }
             _subtasksContainer.EditSubtask(id, projectId, subtaskStatus, subtaskName, subtaskDescription, subtaskLabel);
             return RedirectToAction(nameof(Index));
         }

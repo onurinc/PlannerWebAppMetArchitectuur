@@ -42,6 +42,7 @@
                 <input asp-for="SubtaskLabel" class="form-control" />
                 <span asp-validation-for="SubtaskLabel" class="text-danger"></span>
             </div>
+            <h3>@ViewBag.Error</h3>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
