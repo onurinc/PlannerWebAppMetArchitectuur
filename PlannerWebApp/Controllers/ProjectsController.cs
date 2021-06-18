@@ -9,10 +9,12 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
     public class ProjectsController : Controller
     {
         private readonly IProjectContainer _pContainer;
+        private readonly IUsersContainer _uContainer;
 
-        public ProjectsController(IProjectContainer pContainer)
+        public ProjectsController(IProjectContainer pContainer, IUsersContainer uContainer)
         {
             this._pContainer = pContainer;
+            this._uContainer = uContainer;
         }
 
         // GET: ProjectsController
@@ -44,11 +46,13 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: ProjectsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([FromForm]int userId, string projectName, string projectDescription)
+        public ActionResult Create(ProjectViewModel projectModel, int userId, string projectName, string projectDescription)
         {
-            if (userId == null)
+            var user = _uContainer.GetUser(userId);
+            if (user == null)
             {
-                return RedirectToAction(nameof(Index));
+                ViewBag.Error = "You need to use a User Id that exists.";
+                return View(projectModel);
             }
             _pContainer.AddProject(userId, projectName, projectDescription);
             return RedirectToAction(nameof(Index));

@@ -1,7 +1,4 @@
 ﻿using DataAccesLayer.Data.Data_Transfer_Object;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LogicLayer.Models
 {

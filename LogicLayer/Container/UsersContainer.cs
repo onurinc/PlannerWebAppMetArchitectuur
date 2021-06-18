@@ -30,8 +30,13 @@ namespace LogicLayer.Container
         public UsersModel GetUser(int id)
         {
             var user = _usersRepo.GetUser(id);
-            UsersModel userModel = new UsersModel(user);
-            return userModel;
+            if (user != null)
+            {
+                UsersModel userModel = new UsersModel(user);
+                return userModel;
+            }
+
+            return null;
         }
     }
 }

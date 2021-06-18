@@ -31,8 +31,13 @@ namespace LogicLayer.Container
         public SubtasksModel GetSubtask(int id)
         {
             var subtask = _subtaskRepo.GetSubtask(id);
-            SubtasksModel subtasksModel = new SubtasksModel(subtask);
-            return subtasksModel;
+            if (subtask != null)
+            {
+                SubtasksModel subtasksModel = new SubtasksModel(subtask);
+                return subtasksModel;
+            }
+
+            return null;
         }
 
         public void AddSubtask(int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)

@@ -9,10 +9,12 @@ namespace PlannerWebApp.Controllers
     public class SubtasksController : Controller
     {
         private readonly ISubtasksContainer _subtasksContainer;
+        private readonly IProjectContainer _pContainer;
 
-        public SubtasksController(ISubtasksContainer subtasksContainer)
+        public SubtasksController(ISubtasksContainer subtasksContainer, IProjectContainer projectsContainer)
         {
             this._subtasksContainer = subtasksContainer;
+            this._pContainer = projectsContainer;
         }
         // GET: SubtasksController
         public ActionResult Index()
@@ -42,8 +44,14 @@ namespace PlannerWebApp.Controllers
         // POST: SubtasksController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)
+        public ActionResult Create(SubtasksViewModel subtasksViewModel, int projectId, bool subtaskStatus, string subtaskName, string subtaskDescription, string subtaskLabel)
         {
+            var project = _pContainer.GetProjectById(projectId);
+            if (project == null)
+            {
+                ViewBag.Error = "You need to use a Project Id that exists.";
+                return View(subtasksViewModel);
+            }
             _subtasksContainer.AddSubtask(projectId, subtaskStatus, subtaskName, subtaskDescription, subtaskLabel);
             return RedirectToAction(nameof(Index));
         }

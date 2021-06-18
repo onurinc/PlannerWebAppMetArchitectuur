@@ -40,8 +40,13 @@ namespace LogicLayer.Container
         public NotesModel GetNoteById(int id)
         {
             var note = _notesRepo.GetNote(id);
-            NotesModel notesModel = new NotesModel(note);
-            return notesModel;
+            if (note != null)
+            {
+                NotesModel notesModel = new NotesModel(note);
+                return notesModel;
+            }
+
+            return null;
         }
 
         public void AddNote(string noteName, string description, string urgency, int projectId)

@@ -36,8 +36,13 @@ namespace LogicLayer.Container
         public RemindersModel GetReminder(int id)
         {
             var reminder = _reminderRepo.GetReminder(id);
-            RemindersModel reminderModel = new RemindersModel(reminder);
-            return reminderModel;
+            if (reminder != null)
+            {
+                RemindersModel reminderModel = new RemindersModel(reminder);
+                return reminderModel;
+            }
+
+            return null;
         }
 
         public void EditReminder(int id, int userId, string reminderName, string reminderDescription)

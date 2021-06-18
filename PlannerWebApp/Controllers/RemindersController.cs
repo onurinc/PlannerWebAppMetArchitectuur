@@ -10,10 +10,12 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
     public class RemindersController : Controller
     {
         private readonly IRemindersContainer _remindersContainer;
+        private readonly IUsersContainer _usersContainer;
 
-        public RemindersController(IRemindersContainer remindersContainer)
+        public RemindersController(IRemindersContainer remindersContainer, IUsersContainer usersContainer)
         {
             this._remindersContainer = remindersContainer;
+            this._usersContainer = usersContainer;
         }
 
         // GET: RemindersController
@@ -44,8 +46,14 @@ namespace ProjectsOnlyCRUDWithoutEntityTemplate.Controllers
         // POST: RemindersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int userId, string reminderName, string reminderDescription)
+        public ActionResult Create(RemindersViewModel remindersViewModel, int userId, string reminderName, string reminderDescription)
         {
+            var user = _usersContainer.GetUser(userId);
+            if (user == null)
+            {
+                ViewBag.Error = "You need to use a User Id that exists.";
+                return View(remindersViewModel);
+            }
             _remindersContainer.AddReminder(userId, reminderName, reminderDescription);
             return RedirectToAction(nameof(Index));
         }
