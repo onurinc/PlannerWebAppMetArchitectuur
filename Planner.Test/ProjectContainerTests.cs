@@ -60,12 +60,13 @@ namespace Planner.Test
 
             // Act
             ProjectListOne = _projectContainer.GetAllProjects();
-            // ProjectListTwo = _projectContainer.GetAllProjects();
+            ProjectListTwo = _projectContainer.GetAllProjects();
 
 
             // Assert
             Assert.AreEqual(2, ProjectListOne.Count);
-            // Assert.AreEqual(ProjectListTwo, ProjectListOne.Count);
+            Assert.AreEqual(2, ProjectListOne.Count);
+
         }
 
         [TestMethod]
