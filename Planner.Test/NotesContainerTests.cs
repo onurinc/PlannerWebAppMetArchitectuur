@@ -23,18 +23,6 @@ namespace Planner.Test
             _notesContainer = new NotesContainer(_mockNotesRepository.Object);
         }
 
-        List<ProjectsDTO> ProjectList = new List<ProjectsDTO>
-        {
-            new ProjectsDTO()
-            {
-                ProjectId = 1, ProjectName = "ProjectOne", ProjectDescription = "ProjectOne Description"
-            },
-            new ProjectsDTO()
-            {
-                ProjectId = 2, ProjectName = "ProjectTwo", ProjectDescription = "ProjectTwo Description"
-            }
-        };
-
         List<NotesDTO> NotesList = new List<NotesDTO>
         {
             new NotesDTO()
@@ -94,7 +82,7 @@ namespace Planner.Test
                     else
                     {
                         throw new Exception(
-                            "Project can not be added, make sure you enter the corresponding information");
+                            "Note can not be added, make sure you enter the corresponding information");
                     }
                 });
 
